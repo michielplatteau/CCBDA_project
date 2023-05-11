@@ -14,4 +14,4 @@ This is how the result should look:
 
 ![img_charts_v1.png](images%2Fimg_charts_v1.png)
 
-Don't forget to configure your Django and Postgres!
+After running the django server you can find the chart prototype it under http://127.0.0.1:8000/test/.
