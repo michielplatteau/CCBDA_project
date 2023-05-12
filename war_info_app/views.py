@@ -4,6 +4,8 @@ from datetime import datetime, timedelta
 
 from django.http import HttpResponse
 from django.shortcuts import render
+from django.utils import timezone
+
 
 from war_info_app.models import TestModel3
 
@@ -37,11 +39,11 @@ def index(request):
     TestModel3.objects.all().delete()
 
     # Add some data for testing
-    tm = TestModel3(name='test_name', tanks=10, fuel=1, date=datetime.now() - timedelta(days=1))
+    tm = TestModel3(name='test_name', tanks=10, fuel=1, date=timezone.now() - timedelta(days=1))
     tm.save()
-    tm1 = TestModel3(name='test_name1', tanks=20, fuel=7, date=datetime.now() - timedelta(days=2))
+    tm1 = TestModel3(name='test_name1', tanks=20, fuel=7, date=timezone.now() - timedelta(days=2))
     tm1.save()
-    tm2 = TestModel3(name='test_name2', tanks=25, fuel=2, date=datetime.now() - timedelta(days=11))
+    tm2 = TestModel3(name='test_name2', tanks=25, fuel=2, date=timezone.now() - timedelta(days=11))
     tm2.save()
 
     response = TestModel3.objects.all()

@@ -1,6 +1,7 @@
 from datetime import datetime
 
 from django.db import models
+from django.utils import timezone
 
 
 # Create your models here.
@@ -16,6 +17,6 @@ from django.db import models
 
 class TestModel3(models.Model):
     name = models.CharField(max_length=30)
-    date = models.DateTimeField(default=datetime.now)
+    date = models.DateTimeField(default=timezone.now)
     tanks = models.IntegerField()
     fuel = models.IntegerField()
