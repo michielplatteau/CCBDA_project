@@ -20,3 +20,8 @@ class TestModel3(models.Model):
     date = models.DateTimeField(default=timezone.now)
     tanks = models.IntegerField()
     fuel = models.IntegerField()
+
+
+class Kills(models.Model):
+    date = models.DateTimeField(default=timezone.now)
+    kills = models.IntegerField()
