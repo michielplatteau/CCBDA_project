@@ -23,5 +23,5 @@ class TestModel3(models.Model):
 
 
 class Kills(models.Model):
-    date = models.DateTimeField(default=timezone.now)
+    date = models.DateField()
     kills = models.IntegerField()
