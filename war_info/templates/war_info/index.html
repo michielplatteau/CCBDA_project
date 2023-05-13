@@ -81,39 +81,8 @@
       });
       </script>
   </div>
-  <div id="chart-wrapper">
-      <canvas id="myChart3" width="800" height="400"></canvas>
-      <script>
-      const ctx2 = document.getElementById('myChart2').getContext('2d');
-      const myChart2 = new Chart(ctx2, {
-          type: 'line',
-          data: {
-            labels : [{% for item in dates %}"{{ item }}",{% endfor %}],
-              datasets: [{
-                label: "Cumulative number of deaths",
-                data : [{% for item in losses %}{{ item }},{% endfor %}],
-                backgroundColor: 'rgba(192,75,106,0.2)',
-                borderColor: 'rgb(192,75,93)',
-                borderWidth: 1
-              }]
-          },
-          options: {
-              scales: {
-                  y: {
-                      beginAtZero: true
-                  },
-                  x: {
-                      type: 'time',
-                      time: {
-                          unit: 'day',
-                          parser: 'yyyy-MM-dd'
-                      }
-                  }
-              }
-          }
-      });
-      </script>
   </div>
-
+      another div
+  </div>
 </body>
 </html>
