@@ -13,9 +13,13 @@
   </style>
   <div id="chart-wrapper">
       <canvas id="myChart3" width="800" height="400"></canvas>
+      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+{#      <script src="https://cdn.jsdelivr.net/npm/chart.js@^3"></script>#}
+      <script src="https://cdn.jsdelivr.net/npm/luxon@^2"></script>
+      <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-luxon@^1"></script>
       <script>
-      const ctx2 = document.getElementById('myChart2').getContext('2d');
-      const myChart2 = new Chart(ctx, {
+      const ctx3 = document.getElementById('myChart3').getContext('2d');
+      const myChart3 = new Chart(ctx3, {
           type: 'line',
           data: {
             labels : [{% for item in dates %}"{{ item }}",{% endfor %}],
@@ -30,9 +34,8 @@
           options: {
               scales: {
                   y: {
-                      min = 0
-                      max = 1000000
-                      beginAtZero: true
+                      min: 0,
+                      max: 200000,
                   },
                   x: {
                       type: 'time',
