@@ -80,4 +80,4 @@ def index2(request):
         "dates": dates,
         "losses": losses,
     }
-    return render(request, "index.html", context)
+    return render(request, "index2.html", context)
