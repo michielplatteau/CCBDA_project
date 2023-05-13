@@ -8,5 +8,6 @@ urlpatterns = [
     path('another-path/', views.home),
     path('model_retrieve/', views.test_model_view),
     path('test/', views.index),
-    path('', views.home)
+    path('', views.home),
+    path('test2/', views.index2)
 ]

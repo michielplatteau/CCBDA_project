@@ -8,6 +8,8 @@ from django.utils import timezone
 
 
 from war_info_app.models import TestModel3
+from war_info_app.models import Kills
+
 
 
 # DEFINE OUR VIEWS HERE
@@ -59,5 +61,23 @@ def index(request):
         "dates": dates,
         "tanks": tanks,
         "fuel": fuel,
+    }
+    return render(request, "index.html", context)
+
+
+def index2(request):
+
+    response = Kills.objects.all()
+    data = []
+    for x in response:
+        data.append([str(x.date)[:10], x.losses])
+    # print(data)
+
+    # unpack dict keys / values into two lists
+    dates, losses = zip(*data)
+
+    context = {
+        "dates": dates,
+        "losses": losses,
     }
     return render(request, "index.html", context)

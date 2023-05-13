@@ -23,5 +23,5 @@ class TestModel3(models.Model):
 
 
 class Kills(models.Model):
-    date = models.DateField()
-    kills = models.IntegerField()
+    date = models.DateField(primary_key=True)
+    losses = models.IntegerField()
