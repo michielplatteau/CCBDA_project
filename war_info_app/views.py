@@ -98,9 +98,7 @@ def index2(request):
         for k in range(1, 31)]
     daily_losses_predict = regression_poly(np.array(days_predict))
 
-    # calcular dates futures, fins a un mes o una setmana i llavors aplicar c a aquestes dates i obtenir predicted
-    # daily losses ,un gràfic des del principi de com van les losses acumulades, un gràfic de l'últim mes i una mica de
-    # prediction de les losses sense acumular llavors el mapa
+    # change next month for next week
 
     context = {
         "dates_all_days": dates_all_days,
