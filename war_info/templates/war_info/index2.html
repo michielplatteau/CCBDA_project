@@ -1,7 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>CCBDA war_info</title>
+    <title>CCBDA war_info</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.css" />
+    <style>
+        #map {
+            height: 400px;
+            width: 900px;
+        }
+    </style>
 </head>
 <body>
   <style>
@@ -67,9 +74,11 @@
               {
                 label: "Prediction",
                 data : [{% for item in daily_losses_predict %}{{ item }},{% endfor %}],
-                backgroundColor: 'rgba(192,75,106,0.2)',
-                borderColor: 'rgb(192,75,93)',
-                borderWidth: 1
+                backgroundColor: 'rgba(85,158,190,0.2)',
+                borderColor: 'rgb(53,101,158)',
+                borderWidth: 1,
+                pointRadius: 0,
+                pointHoverRadius: 0
               }
               ]
           },
@@ -90,6 +99,22 @@
       });
       </script>
   </div>
+  <div id="map"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script>
+        var map = L.map('map').setView([48.379433, 31.16558], 6);
+
+        L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
+            attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
+            maxZoom: 18,
+        }).addTo(map);
+
+        // Add markers to the map
+        L.marker([51.5, -0.09]).addTo(map)
+            .bindPopup('Marker 1');
+
+    </script>
 
 </body>
 </html>

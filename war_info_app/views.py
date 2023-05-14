@@ -89,16 +89,18 @@ def index2(request):
     # unpack dict keys / values into two lists
     dates_last_month, days_last_month, cumulative_losses_last_month, daily_losses_last_month = zip(*data_last_month)
 
-    daily_losses_last_month_for_predict = list(daily_losses_last_month) + ['null']*30
+    daily_losses_last_month_for_predict = list(daily_losses_last_month) + ['null'] * 30
 
     regression_poly = Polynomial.fit(days_last_month, daily_losses_last_month, deg=1)
-    days_predict = list(days_last_month) + list(range(days_all_days[-1] + 1, days_all_days[-1] + 31))
+    n = 14  # number of days to be predicted
+    days_predict = list(days_last_month) + list(range(days_all_days[-1] + 1, days_all_days[-1] + n + 1))
     dates_predict = list(dates_last_month) + [
         (datetime.strptime(dates_all_days[-1], "%Y-%m-%d") + timedelta(days=k)).strftime("%Y-%m-%d")
-        for k in range(1, 31)]
+        for k in range(1, n + 1)]
     daily_losses_predict = regression_poly(np.array(days_predict))
 
-    # change next month for next week
+    # add points to be added to the map
+    # in db entries should include position, date and comment, title and type
 
     context = {
         "dates_all_days": dates_all_days,
