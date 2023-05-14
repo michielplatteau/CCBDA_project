@@ -109,10 +109,20 @@
             attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
             maxZoom: 18,
         }).addTo(map);
-
-        // Add markers to the map
-        L.marker([51.5, -0.09]).addTo(map)
-            .bindPopup('Marker 1');
+        // console.log(typeof lat_events)
+        var lat_events = [{% for item in lat_events %}{{ item }},{% endfor %}]
+        var long_events = [{% for item in long_events %}{{ item }},{% endfor %}]
+        var notes_events = [
+        {% for item in notes_events %}
+            "{{ item }}",
+        {% endfor %}
+        ];
+        var n = lat_events.length
+        for (var i = 0; i < n; i++) {
+          L.marker([lat_events[i], long_events[i]])
+            .bindPopup(notes_events[i])
+            .addTo(map);
+        }
 
     </script>
 

@@ -26,3 +26,14 @@ class Kills(models.Model):
     date = models.DateField(primary_key=True)
     day = models.IntegerField()
     losses = models.IntegerField()
+
+
+class EventsMap(models.Model):
+    id = models.TextField(primary_key=True)
+    date = models.DateField()
+    type = models.TextField()
+    location = models.TextField()
+    latitude = models.FloatField()
+    longitude = models.FloatField()
+    notes = models.TextField()
+    fatalities = models.IntegerField()

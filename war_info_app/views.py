@@ -10,6 +10,7 @@ from numpy.polynomial import Polynomial
 
 from war_info_app.models import TestModel3
 from war_info_app.models import Kills
+from war_info_app.models import EventsMap
 
 
 # DEFINE OUR VIEWS HERE
@@ -68,13 +69,10 @@ def index2(request):
     all_days = Kills.objects.all().order_by('day')
 
     data_all_days = []
-    print(len(all_days))
     for x in all_days:
         data_all_days.append([str(x.date)[:10], x.day, x.losses])
 
     # unpack dict keys / values into two lists
-    print(type(zip(*data_all_days)))
-    print(len(data_all_days))
     dates_all_days, days_all_days, cumulative_losses_all_days = zip(*data_all_days)
 
     # Get rows of the last 30 days
@@ -102,6 +100,19 @@ def index2(request):
     # add points to be added to the map
     # in db entries should include position, date and comment, title and type
 
+    # Get rows of the last 30 days
+    actual_month_ago_date = datetime.now() - timedelta(days=30)
+
+    # events of the last 30 days.
+    events_result = EventsMap.objects.filter(date__gte=actual_month_ago_date).order_by('date')
+    events_data = []
+    for x in events_result:
+        events_data.append([str(x.date)[:10], x.type, x.location, x.latitude, x.longitude, x.notes, x.fatalities])
+
+    # unpack dict keys / values into two lists
+    dates_events, types_events, locations_events, lat_events, long_events, notes_events, fatalities_events =\
+        zip(*events_data)
+
     context = {
         "dates_all_days": dates_all_days,
         # "days_all_days": days_all_days,
@@ -111,5 +122,12 @@ def index2(request):
         "daily_losses_last_month_for_predict": daily_losses_last_month_for_predict,
         "dates_predict": dates_predict,
         "daily_losses_predict": daily_losses_predict,
+        "dates_events": dates_events,
+        "types_events": types_events,
+        "locations_events": locations_events,
+        "lat_events": lat_events,
+        "long_events": long_events,
+        "notes_events": notes_events,
+        "fatalities_events": fatalities_events,
     }
     return render(request, "index2.html", context)
