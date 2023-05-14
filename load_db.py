@@ -24,11 +24,11 @@ with open('russia_losses_personnel.csv', 'r') as file:
     # cursor.execute("CREATE TABLE Kills ( day DATE PRIMARY KEY, losses INTEGER);")
 
     # Define the INSERT query
-    insert_query = "INSERT INTO war_info_app_kills (date, losses) VALUES (%s, %s)"
+    insert_query = "INSERT INTO war_info_app_kills (date, day, losses) VALUES (%s, %s, %s)"
 
     # Prepare the data to be inserted as a list of tuples
 
-    index = [0, 2]
+    index = [0, 1, 2]
     data_to_insert = [tuple([row[i] for i in index]) for row in csv_data]
 
     # Execute the INSERT query with multiple rows

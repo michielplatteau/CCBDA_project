@@ -1,15 +1,15 @@
 import os
 from datetime import datetime, timedelta
 
-
+import numpy as np
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.utils import timezone
-
+from datetime import datetime, timedelta
+from numpy.polynomial import Polynomial
 
 from war_info_app.models import TestModel3
 from war_info_app.models import Kills
-
 
 
 # DEFINE OUR VIEWS HERE
@@ -18,7 +18,6 @@ def home(request):
 
 
 def test_model_view(request):
-
     # Add some data for testing
     tm = TestModel3(name='test_name', tanks=10, fuel=1)
     tm.save()
@@ -36,7 +35,6 @@ def test_model_view(request):
 
 
 def index(request):
-
     # Clear data from previous runs
     TestModel3.objects.all().delete()
 
@@ -66,18 +64,50 @@ def index(request):
 
 
 def index2(request):
+    # get all rows in table
+    all_days = Kills.objects.all().order_by('day')
 
-    response = Kills.objects.all()
-    data = []
-    for x in response:
-        data.append([str(x.date)[:10], x.losses])
-    # print(data)
+    data_all_days = []
+    print(len(all_days))
+    for x in all_days:
+        data_all_days.append([str(x.date)[:10], x.day, x.losses])
 
     # unpack dict keys / values into two lists
-    dates, losses = zip(*data)
+    print(type(zip(*data_all_days)))
+    print(len(data_all_days))
+    dates_all_days, days_all_days, cumulative_losses_all_days = zip(*data_all_days)
+
+    # Get rows of the last 30 days
+    month_ago_date = datetime.strptime(dates_all_days[-1], "%Y-%m-%d") - timedelta(days=31)
+
+    last_month = Kills.objects.filter(date__gte=month_ago_date).order_by('day')
+    data_last_month = []
+    for i in range(len(last_month) - 1):
+        data_last_month.append([str(last_month[i + 1].date)[:10], last_month[i + 1].day, last_month[i + 1].losses,
+                                last_month[i + 1].losses - last_month[i].losses])
+
+    # unpack dict keys / values into two lists
+    dates_last_month, days_last_month, cumulative_losses_last_month, daily_losses_last_month = zip(*data_last_month)
+
+    regression_poly = Polynomial.fit(days_last_month, daily_losses_last_month, deg=1)
+    days_predict = list(days_last_month) + list(range(days_all_days[-1] + 1, days_all_days[-1] + 31))
+    dates_predict = list(dates_last_month) + [
+        (datetime.strptime(dates_all_days[-1], "%Y-%m-%d") + timedelta(days=k)).strftime("%Y-%m-%d")
+        for k in range(1, 31)]
+    daily_losses_predict = regression_poly(np.array(days_predict))
+
+    # calcular dates futures, fins a un mes o una setmana i llavors aplicar c a aquestes dates i obtenir predicted
+    # daily losses ,un gràfic des del principi de com van les losses acumulades, un gràfic de l'últim mes i una mica de
+    # prediction de les losses sense acumular llavors el mapa
 
     context = {
-        "dates": dates,
-        "losses": losses,
+        "dates_all_days": dates_all_days,
+        # "days_all_days": days_all_days,
+        "cumulative_losses_all_days": cumulative_losses_all_days,
+        "dates_last_month": dates_last_month,
+        # "days_last_month": days_last_month,
+        "daily_losses_last_month": daily_losses_last_month,
+        "dates_predict": dates_predict,
+        "daily_losses_predict": daily_losses_predict,
     }
     return render(request, "index2.html", context)
