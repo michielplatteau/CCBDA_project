@@ -56,14 +56,22 @@
       const myChart2 = new Chart(ctx2, {
           type: 'line',
           data: {
-            labels : [{% for item in dates_last_month %}"{{ item }}",{% endfor %}],
+            labels : [{% for item in dates_predict %}"{{ item }}",{% endfor %}],
               datasets: [{
                 label: "Losses",
-                data : [{% for item in daily_losses_last_month %}{{ item }},{% endfor %}],
+                data : [{% for item in daily_losses_last_month_for_predict %}{{ item }},{% endfor %}],
                 backgroundColor: 'rgba(192,75,106,0.2)',
                 borderColor: 'rgb(192,75,93)',
                 borderWidth: 1
-              }]
+              },
+              {
+                label: "Prediction",
+                data : [{% for item in daily_losses_predict %}{{ item }},{% endfor %}],
+                backgroundColor: 'rgba(192,75,106,0.2)',
+                borderColor: 'rgb(192,75,93)',
+                borderWidth: 1
+              }
+              ]
           },
           options: {
               scales: {

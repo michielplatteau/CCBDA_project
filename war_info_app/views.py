@@ -89,6 +89,8 @@ def index2(request):
     # unpack dict keys / values into two lists
     dates_last_month, days_last_month, cumulative_losses_last_month, daily_losses_last_month = zip(*data_last_month)
 
+    daily_losses_last_month_for_predict = list(daily_losses_last_month) + ['null']*30
+
     regression_poly = Polynomial.fit(days_last_month, daily_losses_last_month, deg=1)
     days_predict = list(days_last_month) + list(range(days_all_days[-1] + 1, days_all_days[-1] + 31))
     dates_predict = list(dates_last_month) + [
@@ -104,9 +106,9 @@ def index2(request):
         "dates_all_days": dates_all_days,
         # "days_all_days": days_all_days,
         "cumulative_losses_all_days": cumulative_losses_all_days,
-        "dates_last_month": dates_last_month,
+        # "dates_last_month": dates_last_month,
         # "days_last_month": days_last_month,
-        "daily_losses_last_month": daily_losses_last_month,
+        "daily_losses_last_month_for_predict": daily_losses_last_month_for_predict,
         "dates_predict": dates_predict,
         "daily_losses_predict": daily_losses_predict,
     }
