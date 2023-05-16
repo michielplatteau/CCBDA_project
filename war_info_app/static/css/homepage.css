@@ -1,0 +1,103 @@
+@font-face {
+    font-family: "Teko";
+    src: url("/static/fonts/Teko-Medium.ttf") format("truetype");
+}
+
+body {
+  font-family: "Teko", sans-serif;
+}
+
+nav.navbar.navbar-expand-lg.navbar-light {
+    background-color: #1C64AC;
+}
+button#dropdownMenuButton {
+    background-color: #1C64AC;
+    border: none;
+}
+
+a.btn.donate-btn {
+    background-color: #FDB813;
+    border-radius: unset;
+    font-weight: bold;
+}
+
+a.btn.donate-btn:hover {
+    background-color: white;
+}
+
+a.nav-link {
+    color: black;
+    font-weight: bold;
+}
+
+li.nav-item.active {
+    background-color: rgba(38, 59, 151, 0.1);
+}
+
+li.nav-item.active a {
+    color: #1C64AC;
+}
+
+li.nav-item {
+    padding: 8px 15px;
+    border-radius: 20px;
+}
+
+a.logo-link {
+    margin-right: 60px;
+}
+
+.input-group.rounded.custom-search-bar {
+    max-width: 250px;
+}
+
+a.navbar-brand {
+    color: white !important;
+}
+
+span#search-addon {
+    color: #1C64AC;
+}
+
+span#search-addon {
+    color: #1C64AC;
+    background-color: white;
+}
+
+h1.section-header.text-center.py-4 {
+    font-size: 60px;
+}
+
+.resource-box.d-flex.flex-row.justify-content-center {
+    height: 110px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+    margin: 20px;
+}
+
+p.p-2.res-text {
+    font-weight: bold;
+    margin: 0px;
+}
+
+svg.svg-inline--fa.fa-arrow-right.fa-w-14 {
+    color: #1C64AC;
+}
+
+footer {
+    background-color: #FDB813;
+}
+
+.footer-row.row.d-flex.flex-row.align-items-center {
+    height: 80px;
+}
+
+section#resources {
+    margin-bottom: 60px;
+}
+
+svg.svg-inline--fa.fa-facebook.fa-w-16, svg.svg-inline--fa.fa-twitter.fa-w-16, svg.svg-inline--fa.fa-instagram.fa-w-14 {
+    color: #1C64AC;
+    font-size: 30px;
+}
