@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>CCBDA war_info</title>
+</head>
+<body>
+  <style>
+      #chart-wrapper {
+        display: inline-block;
+        position: relative;
+        width: 40%;
+      }
+  </style>
+  <div id="chart-wrapper">
+      <canvas id="myChart" width="800" height="400"></canvas>
+      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+{#      <script src="https://cdn.jsdelivr.net/npm/chart.js@^3"></script>#}
+      <script src="https://cdn.jsdelivr.net/npm/luxon@^2"></script>
+      <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-luxon@^1"></script>
+      <script>
+      const ctx = document.getElementById('myChart').getContext('2d');
+      const myChart = new Chart(ctx, {
+          type: 'line',
+          data: {
+            labels : [{% for item in dates %}"{{ item }}",{% endfor %}],
+              datasets: [{
+                label: "Number of tanks",
+                data : [{% for item in tanks %}{{ item }},{% endfor %}],
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 1
+              }]
+          },
+          options: {
+              scales: {
+                  y: {
+                      beginAtZero: true
+                  },
+                  x: {
+                      type: 'time',
+                      time: {
+                          unit: 'day',
+                          parser: 'yyyy-MM-dd'
+                      }
+                  }
+              }
+          }
+      });
+      </script>
+  </div>
+  <div id="chart-wrapper">
+      <canvas id="myChart2" width="800" height="400"></canvas>
+      <script>
+      const ctx2 = document.getElementById('myChart2').getContext('2d');
+      const myChart2 = new Chart(ctx2, {
+          type: 'line',
+          data: {
+            labels : [{% for item in dates %}"{{ item }}",{% endfor %}],
+              datasets: [{
+                label: "Liters of fuel",
+                data : [{% for item in fuel %}{{ item }},{% endfor %}],
+                backgroundColor: 'rgba(192,75,106,0.2)',
+                borderColor: 'rgb(192,75,93)',
+                borderWidth: 1
+              }]
+          },
+          options: {
+              scales: {
+                  y: {
+                      beginAtZero: true
+                  },
+                  x: {
+                      type: 'time',
+                      time: {
+                          unit: 'day',
+                          parser: 'yyyy-MM-dd'
+                      }
+                  }
+              }
+          }
+      });
+      </script>
+  </div>
+</body>
+</html>

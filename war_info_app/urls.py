@@ -7,5 +7,7 @@ from . import views
 urlpatterns = [
     path('another-path/', views.home),
     path('model_retrieve/', views.test_model_view),
-    path('', views.home)
+    # path('test/', views.graphs),
+    path('', views.home),
+    # path('test2/', views.index2)
 ]

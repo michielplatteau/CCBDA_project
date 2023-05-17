@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'chartjs',
 ]
 
 STATIC_URL = '/static/'
@@ -61,7 +62,7 @@ ROOT_URLCONF = 'war_info.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'war_info/templates/war_info')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
