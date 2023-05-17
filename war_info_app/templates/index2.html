@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CCBDA war_info</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.css" />
+    <style>
+        #map {
+            height: 400px;
+            width: 900px;
+        }
+    </style>
+</head>
+<body>
+  <style>
+      #chart-wrapper {
+        display: inline-block;
+        position: relative;
+        width: 40%;
+      }
+  </style>
+  <div id="chart-wrapper">
+      <canvas id="myChart3" width="800" height="400"></canvas>
+      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+{#      <script src="https://cdn.jsdelivr.net/npm/chart.js@^3"></script>#}
+      <script src="https://cdn.jsdelivr.net/npm/luxon@^2"></script>
+      <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-luxon@^1"></script>
+      <script>
+      const ctx3 = document.getElementById('myChart3').getContext('2d');
+      const myChart3 = new Chart(ctx3, {
+          type: 'line',
+          data: {
+            labels : [{% for item in dates_all_days %}"{{ item }}",{% endfor %}],
+              datasets: [{
+                label: "Cumulative number of deaths",
+                data : [{% for item in cumulative_losses_all_days %}{{ item }},{% endfor %}],
+                backgroundColor: 'rgba(192,75,106,0.2)',
+                borderColor: 'rgb(192,75,93)',
+                borderWidth: 1
+              }]
+          },
+          options: {
+              scales: {
+                  y: {
+                      min: 0,
+                      max: 200000,
+                  },
+                  x: {
+                      type: 'time',
+                      time: {
+                          unit: 'day',
+                          parser: 'yyyy-MM-dd'
+                      }
+                  }
+              }
+          }
+      });
+      </script>
+  </div>
+  <div id="chart-wrapper">
+      <canvas id="myChart2" width="800" height="400"></canvas>
+      <script>
+      const ctx2 = document.getElementById('myChart2').getContext('2d');
+      const myChart2 = new Chart(ctx2, {
+          type: 'line',
+          data: {
+            labels : [{% for item in dates_predict %}"{{ item }}",{% endfor %}],
+              datasets: [{
+                label: "Losses",
+                data : [{% for item in daily_losses_last_month_for_predict %}{{ item }},{% endfor %}],
+                backgroundColor: 'rgba(192,75,106,0.2)',
+                borderColor: 'rgb(192,75,93)',
+                borderWidth: 1
+              },
+              {
+                label: "Prediction",
+                data : [{% for item in daily_losses_predict %}{{ item }},{% endfor %}],
+                backgroundColor: 'rgba(85,158,190,0.2)',
+                borderColor: 'rgb(53,101,158)',
+                borderWidth: 1,
+                pointRadius: 0,
+                pointHoverRadius: 0
+              }
+              ]
+          },
+          options: {
+              scales: {
+                  y: {
+                      beginAtZero: true
+                  },
+                  x: {
+                      type: 'time',
+                      time: {
+                          unit: 'day',
+                          parser: 'yyyy-MM-dd'
+                      }
+                  }
+              }
+          }
+      });
+      </script>
+  </div>
+  <div id="map"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script>
+        var map = L.map('map').setView([48.379433, 31.16558], 6);
+
+        L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
+            attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
+            maxZoom: 18,
+        }).addTo(map);
+        // console.log(typeof lat_events)
+        var lat_events = [{% for item in lat_events %}{{ item }},{% endfor %}]
+        var long_events = [{% for item in long_events %}{{ item }},{% endfor %}]
+        var notes_events = [
+        {% for item in notes_events %}
+            "{{ item }}",
+        {% endfor %}
+        ];
+        var n = lat_events.length
+        for (var i = 0; i < n; i++) {
+          L.marker([lat_events[i], long_events[i]])
+            .bindPopup(notes_events[i])
+            .addTo(map);
+        }
+
+    </script>
+
+</body>
+</html>
