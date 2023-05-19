@@ -25,6 +25,13 @@ Everyone will tell something about his part:
 -	ChartJS
 -	Leaflet
 -	Deployment
+-	
+## Designing wireframes and implementing layout
+
+Our web application's development process started with the creation of wireframes using the well-known design program Figma. Wireframes helped us define the positioning and interactions of various elements on the user interface as well as the initial structure and layout of the program. Before beginning the implementation stage, this step assisted us in visualizing the overall design and layout. After the wireframes were complete, we went on to design the Django application's layout. With the help of the robust web framework Django, we can create scalable and dynamic web applications since it adheres to the Model-View-Controller (MVC) architectural pattern. We used Bootstrap, a well-known front-end framework that offers a variety of pre-built components and styles, to speed up the layout building process. However as we moved from them to actual implementation, we discovered that several design aspects were difficult to implement or incompatible with the selected front-end framework, Bootstrap. To guarantee the design integrity while working within the framework's limitations, we had to make tweaks and discover other alternatives. Although Bootstrap offered a broad variety of pre-built components and styles, there were occasionally restrictions on how we might modify these components to meet our own design or functionality needs. In order to provide a uniform user interface and user experience, we had to carefully balance the modification requirements with the framework's capabilities. We were able to develop a unified and user-friendly online application that shows data in an intuitive and aesthetically pleasing way by combining the back-end capabilities of Django, Bootstrap's responsive design, and JavaScript's interaction.
+
+
+
 
 # Discussion on the use of the twelve-factor methodology as stated in the requirements.
 Michiel
