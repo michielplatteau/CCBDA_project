@@ -9,5 +9,5 @@ urlpatterns = [
     path('model_retrieve/', views.test_model_view),
     # path('test/', views.graphs),
     path('', views.home),
-    # path('test2/', views.index2)
+    path('test2/', views.index2)
 ]

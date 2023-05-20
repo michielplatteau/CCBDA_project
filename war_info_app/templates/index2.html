@@ -1,130 +1,170 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+{% load static %}
 <head>
-    <title>CCBDA war_info</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.css" />
-    <style>
-        #map {
-            height: 400px;
-            width: 900px;
-        }
-    </style>
+    <meta charset="UTF-8">
+    <title>My Website</title>
+    <!-- Include Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <!-- Include Font Awesome CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <!-- Include your own CSS file -->
+    <link rel="stylesheet" href="{% static 'css/homepage.css' %}">
 </head>
 <body>
-  <style>
-      #chart-wrapper {
-        display: inline-block;
-        position: relative;
-        width: 40%;
-      }
-  </style>
-  <div id="chart-wrapper">
-      <canvas id="myChart3" width="800" height="400"></canvas>
-      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-{#      <script src="https://cdn.jsdelivr.net/npm/chart.js@^3"></script>#}
-      <script src="https://cdn.jsdelivr.net/npm/luxon@^2"></script>
-      <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-luxon@^1"></script>
-      <script>
-      const ctx3 = document.getElementById('myChart3').getContext('2d');
-      const myChart3 = new Chart(ctx3, {
-          type: 'line',
-          data: {
-            labels : [{% for item in dates_all_days %}"{{ item }}",{% endfor %}],
-              datasets: [{
-                label: "Cumulative number of deaths",
-                data : [{% for item in cumulative_losses_all_days %}{{ item }},{% endfor %}],
-                backgroundColor: 'rgba(192,75,106,0.2)',
-                borderColor: 'rgb(192,75,93)',
-                borderWidth: 1
-              }]
-          },
-          options: {
-              scales: {
-                  y: {
-                      min: 0,
-                      max: 200000,
-                  },
-                  x: {
-                      type: 'time',
-                      time: {
-                          unit: 'day',
-                          parser: 'yyyy-MM-dd'
-                      }
-                  }
-              }
-          }
-      });
-      </script>
+
+<!-- Header -->
+<header>
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container header-con">
+            <!-- Contact Icon -->
+            <a class="navbar-brand mx-4" href="#">
+                <i class="fas fa-phone"></i>
+                <span>Contact</span>
+            </a>
+            <!-- Report Bug Icon -->
+            <a class="navbar-brand mx-4" href="#">
+                <i class="fas fa-bug"></i>
+                <span>Report Bug</span>
+            </a>
+            <div class="dropdown ml-auto">
+              <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                English
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="#">English</a>
+                <a class="dropdown-item" href="#">French</a>
+                <a class="dropdown-item" href="#">Spanish</a>
+              </div>
+            </div>
+            <!-- Donate Button -->
+            <a class="btn donate-btn ml-5" href="#">Donate</a>
+        </div>
+    </nav>
+</header>
+
+<!-- Menu -->
+<nav class="navbar navbar-expand-lg">
+    <div class="container top-menu-con">
+        <a class="logo-link" href="#">
+            <img src="{% static 'images/logo.png' %}" alt="My Logo">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">About Us</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Services</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Contact Us</a>
+                </li>
+            </ul>
+            <!-- Search Bar -->
+            <div class="input-group rounded custom-search-bar ml-5">
+              <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
+              <span class="input-group-text border-0" id="search-addon">
+                <i class="fas fa-search"></i>
+              </span>
+            </div>
+        </div>
+    </div>
+</nav>
+<!-- Graphs Section -->
+<section id="graphs">
+    <div class="container">
+        <h1 class="section-header text-center py-4">Graphs</h1>
+        <div class="row justify-content-center">
+            {% include 'graphs.html' %}
+        </div>
+    </div>
+</section>
+<!-- Graphs Section -->
+<!--<section id="map">-->
+<!--MAP APPEARS UNCENTERED IF SECTION IS USED-->
+    <div class="container">
+        <h1 class="section-header text-center py-4">Live map</h1>
+            {% include 'maps.html' %}
+        <!-- Add your content here -->
+    </div>
+<!--</section>-->
+<!-- Resources Section -->
+<section id="resources">
+    <div class="container">
+        <h1 class="section-header text-center py-4">Resources</h1>
+        <div class="row justify-content-center">
+            <div class="col-md-6 col-lg-6">
+                <div class="resource-box d-flex flex-row justify-content-center align-items-center">
+                    <img class="p-2" src="{% static 'icons/Globe.svg' %}" alt="Custom Icon">
+                    <p class="p-2 res-text">Ukraine conflict map dataset</p>
+                    <a href="#" class="arrow-link p-2"><i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-6">
+                <div class="resource-box d-flex flex-row justify-content-center align-items-center">
+                    <img class="p-2" src="{% static 'icons/Legal.svg' %}" alt="Custom Icon">
+                    <p class="p-2 res-text">Equipment on both sites dataset</p>
+                    <a href="#" class="arrow-link p-2"><i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-md-6 col-lg-6">
+                <div class="resource-box d-flex flex-row justify-content-center align-items-center">
+                    <img class="p-2" src="{% static 'icons/lens.svg' %}" alt="Custom Icon">
+                    <p class="p-2 res-text">Russia Ukraine War Kaggle</p>
+                    <a href="#" class="arrow-link p-2"><i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-6">
+                <div class="resource-box d-flex flex-row justify-content-center align-items-center">
+                    <img class="p-2" src="{% static 'icons/Document.svg' %}" alt="Custom Icon">
+                    <p class="p-2 res-text">Ukraine - Data on Conflict Events</p>
+                    <a href="#" class="arrow-link p-2"><i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer>
+  <div class="container footer-container">
+    <div class="footer-row row d-flex flex-row align-items-center">
+      <div class="col-md-6">
+        <ul class="list-inline contact-info">
+          <li class="list-inline-item p-3">
+            <i class="fas fa-phone"></i> Contact: +1 123 456 789
+          </li>
+          <li class="list-inline-item p-3">
+            <i class="far fa-envelope"></i> Email: example@example.com
+          </li>
+        </ul>
+      </div>
+      <div class="col-md-6 text-right">
+        <ul class="list-inline social-networks">
+          <li class="list-inline-item p-2">
+            <a href="#"><i class="fab fa-facebook"></i></a>
+          </li>
+          <li class="list-inline-item p-2">
+            <a href="#"><i class="fab fa-twitter"></i></a>
+          </li>
+          <li class="list-inline-item p-2">
+            <a href="#"><i class="fab fa-instagram"></i></a>
+          </li>
+        </ul>
+      </div>
+    </div>
   </div>
-  <div id="chart-wrapper">
-      <canvas id="myChart2" width="800" height="400"></canvas>
-      <script>
-      const ctx2 = document.getElementById('myChart2').getContext('2d');
-      const myChart2 = new Chart(ctx2, {
-          type: 'line',
-          data: {
-            labels : [{% for item in dates_predict %}"{{ item }}",{% endfor %}],
-              datasets: [{
-                label: "Losses",
-                data : [{% for item in daily_losses_last_month_for_predict %}{{ item }},{% endfor %}],
-                backgroundColor: 'rgba(192,75,106,0.2)',
-                borderColor: 'rgb(192,75,93)',
-                borderWidth: 1
-              },
-              {
-                label: "Prediction",
-                data : [{% for item in daily_losses_predict %}{{ item }},{% endfor %}],
-                backgroundColor: 'rgba(85,158,190,0.2)',
-                borderColor: 'rgb(53,101,158)',
-                borderWidth: 1,
-                pointRadius: 0,
-                pointHoverRadius: 0
-              }
-              ]
-          },
-          options: {
-              scales: {
-                  y: {
-                      beginAtZero: true
-                  },
-                  x: {
-                      type: 'time',
-                      time: {
-                          unit: 'day',
-                          parser: 'yyyy-MM-dd'
-                      }
-                  }
-              }
-          }
-      });
-      </script>
-  </div>
-  <div id="map"></div>
+</footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.js"></script>
-    <script>
-        var map = L.map('map').setView([48.379433, 31.16558], 6);
-
-        L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
-            attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
-            maxZoom: 18,
-        }).addTo(map);
-        // console.log(typeof lat_events)
-        var lat_events = [{% for item in lat_events %}{{ item }},{% endfor %}]
-        var long_events = [{% for item in long_events %}{{ item }},{% endfor %}]
-        var notes_events = [
-        {% for item in notes_events %}
-            "{{ item }}",
-        {% endfor %}
-        ];
-        var n = lat_events.length
-        for (var i = 0; i < n; i++) {
-          L.marker([lat_events[i], long_events[i]])
-            .bindPopup(notes_events[i])
-            .addTo(map);
-        }
-
-    </script>
-
-</body>
-</html>
+<!-- Include Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.1/js/all.min.js"></script>

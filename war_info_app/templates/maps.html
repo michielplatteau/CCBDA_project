@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!--    Include map things-->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <style>
+    #map-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+    }
+
+    #map {
+      width: 900px; /* Adjust the width of the map container */
+      height: 600px; /* Adjust the height of the map container */
+    }
+    </style>
+</head>
+<body>
+  <div id="map-container">
+    <div id="map"></div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script>
+        var map = L.map('map').setView([48.379433, 31.16558], 6);
+
+        L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
+            attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
+            maxZoom: 18,
+        }).addTo(map);
+        // console.log(typeof lat_events)
+        var lat_events = [{% for item in lat_events %}{{ item }},{% endfor %}]
+        var long_events = [{% for item in long_events %}{{ item }},{% endfor %}]
+        var notes_events = [{% for item in notes_events %}"{{ item }}",{% endfor %}];
+        var types_events = [{% for item in types_events %}"{{ item }}",{% endfor %}];
+        var n = lat_events.length
+
+        // for (var j = 0; j < n; j++) {
+        //   if (types_events[j] != 'Political violence') {
+        //       console.log(types_events[j])
+        //   }
+        // }
+
+
+        var dict = {};
+        for (var i = 0; i < n; i++) {
+          if (!(types_events[i] in dict)) {
+              dict[types_events[i]] = [];
+          }
+          dict[types_events[i]].push(L.marker([lat_events[i], long_events[i]])
+                  .bindPopup(notes_events[i]));
+        }
+        // for (const [key, value] of Object.entries(dict)) {
+        //   dict[key] = L.layerGroup(value);
+        // }
+        var layerControl = L.control.layers().addTo(map);
+        for (const [key, value] of Object.entries(dict)) {
+          layerControl.addOverlay(L.layerGroup(value), key);
+          L.layerGroup(value).addTo(map)
+          // console.log(key)
+        }
+
+        // layerControl.addOverlay(parks, "Parks");
+        // var parks = L.layerGroup([crownHill, rubyHill]);
+
+
+    </script>
+<!--</body>-->
+<!--</html>-->

@@ -12,29 +12,30 @@
       }
   </style>
   <div id="chart-wrapper">
-      <canvas id="myChart" width="800" height="400"></canvas>
+      <canvas id="myChart3" width="800" height="400"></canvas>
       <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 {#      <script src="https://cdn.jsdelivr.net/npm/chart.js@^3"></script>#}
       <script src="https://cdn.jsdelivr.net/npm/luxon@^2"></script>
       <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-luxon@^1"></script>
       <script>
-      const ctx = document.getElementById('myChart').getContext('2d');
-      const myChart = new Chart(ctx, {
+      const ctx3 = document.getElementById('myChart3').getContext('2d');
+      const myChart3 = new Chart(ctx3, {
           type: 'line',
           data: {
-            labels : [{% for item in dates %}"{{ item }}",{% endfor %}],
+            labels : [{% for item in dates_all_days %}"{{ item }}",{% endfor %}],
               datasets: [{
-                label: "Number of tanks",
-                data : [{% for item in tanks %}{{ item }},{% endfor %}],
-                backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                borderColor: 'rgba(75, 192, 192, 1)',
+                label: "Cumulative number of deaths",
+                data : [{% for item in cumulative_losses_all_days %}{{ item }},{% endfor %}],
+                backgroundColor: 'rgba(192,75,106,0.2)',
+                borderColor: 'rgb(192,75,93)',
                 borderWidth: 1
               }]
           },
           options: {
               scales: {
                   y: {
-                      beginAtZero: true
+                      min: 0,
+                      max: 200000,
                   },
                   x: {
                       type: 'time',
@@ -55,14 +56,24 @@
       const myChart2 = new Chart(ctx2, {
           type: 'line',
           data: {
-            labels : [{% for item in dates %}"{{ item }}",{% endfor %}],
+            labels : [{% for item in dates_predict %}"{{ item }}",{% endfor %}],
               datasets: [{
-                label: "Liters of fuel",
-                data : [{% for item in fuel %}{{ item }},{% endfor %}],
+                label: "Losses",
+                data : [{% for item in daily_losses_last_month_for_predict %}{{ item }},{% endfor %}],
                 backgroundColor: 'rgba(192,75,106,0.2)',
                 borderColor: 'rgb(192,75,93)',
                 borderWidth: 1
-              }]
+              },
+              {
+                label: "Prediction",
+                data : [{% for item in daily_losses_predict %}{{ item }},{% endfor %}],
+                backgroundColor: 'rgba(85,158,190,0.2)',
+                borderColor: 'rgb(53,101,158)',
+                borderWidth: 1,
+                pointRadius: 0,
+                pointHoverRadius: 0
+              }
+              ]
           },
           options: {
               scales: {
