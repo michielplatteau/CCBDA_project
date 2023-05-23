@@ -12,7 +12,7 @@ conn = psycopg2.connect(
 )
 
 # Open the CSV file
-with open('Ukraine_Black_Sea_2020_2023_Apr28-1 - Sheet1.csv', 'r') as file:
+with open('data/Ukraine_Black_Sea_2020_2023_Apr28-1 - Sheet1.csv', 'r') as file:
     csv_data = csv.reader(file)
     next(csv_data)
 

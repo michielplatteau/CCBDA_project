@@ -8,3 +8,6 @@
 venv/
 node_modules/
 __pycache__/
+
+data/russia_losses_personnel.csv
+data/Ukraine_Black_Sea_2020_2023_Apr28-1 - Sheet1.csv
