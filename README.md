@@ -43,8 +43,36 @@ Everyone will tell something about his part:
 -	ChartJS
 -	Leaflet
 -	Deployment
--	
-## Designing wireframes and implementing layout
+### Deployment
+The deployment process is handled by the AWS Elastic Beanstalk service.
+The use of this service is also described in the services section. 
+Beanstalk helped us a lot and made the deployment process quite convenient,
+however there was still a lot of work to do to deploy our Django application
+successfully. 
+First thing that was necessary for the deployment to work, was to have a list of dependencies for our application.
+This was not a big deal, and using pip we managed to get the dependencies list with
+one command (pip freeze). We saved the list into a file requirements.txt, which is automatically
+installed on the target machine (EC2) upon deployment. 
+There were also some dependencies that were needed for the EC2 instance to be able to connect to PostgreSQL database.
+These are listed in this [file](.ebextensions/01_packages.config). Since the instance runs
+on a Amazon Linux machine, these packages are installed using yum package manager.
+
+In another [file](.ebextensions/02_starter.config) more configuration has been done in order to run
+the Django application successfully. Some options are for configuring environment upon deployment,
+these include updating the path to the application wsgi. There also needed to be a setting
+to proxy the requests on static files to the right directory. Then there was a few extra
+settings for setting environment variables such as which hosts can be served by the application, or whether
+to run the application in debug mode or not. In the same file also
+migrations are handled, meaning the application creates migrations and applies them to the production database upon 
+deployment, creating relational tables for newly created models. This helps to keep the production and development
+databases in sync. 
+
+After configuring all these settings, all one needs to do to deploy the application to the production environment
+is to run the "eb deploy" command and wait few minutes. (Of course this is a bit more complicated
+with the AWS education account as new access credentials are generated each time a lab session is started.)
+
+
+### Designing wireframes and implementing layout
 
 Our web application's development process started with the creation of wireframes using the well-known design program
 Figma. Wireframes helped us define the positioning and interactions of various elements on the user interface as well as
@@ -75,10 +103,77 @@ Samar
 # Description of the main problems encountered and the solutions implemented regarding coding, team organization, services, and resources used.
 
 Everyone will tell something about his problems
+## Django application deployment / AWS services management (Martin)
+Deploying a simple python application with no frameworks and dependencies is 
+very simple thanks to Elastic Beanstalk. However, when a framework such as Django is included,
+and the application also needs to communicate with a database from different service
+it becomes a bit more challenging. At first, I thought it could be as simple as following some tutorial,
+unfortunately I was wrong. Many problems arose due to the fact that some things changed with newer versions 
+of Elastic Beanstalk or Django, and finding the right syntax to do some tasks, mainly within the [.ebextensions](.ebextensions)
+folder was quite challenging. It took me some time to figure out how to configure the WSGIPath for the application, 
+as well as static files option "aws:elasticbeanstalk:environment:proxy:staticfiles", which got changed in recent versions
+of Elastic Beanstalk.
+Then there was also the problem with serving static content
+from S3 bucket, which is described in the [Amazon S3](#amazon-s3) section.
+It was also a bit tricky to find the reasons of unsuccessful deployment,
+however after a while I learned how to orientate in the log files, and it was fine.
+Overall, this kind of work was quite new to me, maybe that's why it took me a bit longer,
+however when all problems got resolved and the application was running and accessible on a public address
+without any problems, it was a very satisfying feeling.
 
 # For each of the services and resources used, explanation on how project benefits from them. Giving some alternatives to obtain similar results and briefly explaining why have been discarded.
 
-Martin 
+### Elastic Beanstalk
+As planned in the project proposal, the backbone of our project is the AWS Elastic Beanstalk service.
+It helps us greatly as it simplifies the deployment process very much. It automates the deployment tasks 
+and handles infrastructure provisioning, load balancing, and auto-scaling,
+allowing us to focus on the application code, instead of how to bring it to the production environment and keep it functioning.
+Elastic Beanstalk frees us from handling the underlying infrastructure of our application, from tasks such as OS patching or server configuration.
+It also makes it easy to integrate with other AWS services, in our case it was Amazon RDS to host the PostgreSQL database.
+Another process that becomes super easy with Elastic Beanstalk is the management of different environments. It wasn't really needed 
+for this project as we don't have an application with live traffic and one environment - production was just enough for our purposes,
+but we could see how profitable it would be to set up multiple environments to make the rolling out and testing of new changes 
+really convenient.
+
+Possible alternative for managing the deployment process could be to include the application in a container and run it 
+using for example AWS Fargate or Amazon ECS. However, we did not go down this path,
+since the process of setting up these services looked way too complex for the scope of this project.
+
+
+Another option to deploy the application and manage it could be to use and setup each of the services grouped by Elastic Beanstalk manually. 
+We could connect to an EC2 instance using SSH and set the environment up by installing all necessary dependencies, then put the application code there and run it.
+But we don't see any reason how we could profit from this approach, Elastic Beanstalk makes all of it much more simple.
+
+
+### Amazon RDS
+Another crucial service for our project is Amazon RDS. Its responsibility is to run a relational database, in our case PostgreSQL.
+It not only handles running the database and making it accessible to our application, but also
+patching or backups. Setting the service up to work with our Elastic Beanstalk was also very convenient.
+
+
+In the project proposal we were also considering the use of Aurora or DynamoDB. 
+Based on the data we chose to use in our application, we realized that it 
+will be better to use a relational database. Therefore, DynamoDB was not a possible choice anymore
+as it is a NoSQL database. That left us with Aurora and RDS which are both relational
+database services and both of them are compatible with PostgreSQL database. We found out that Aurora 
+might achieve a better performance, but with a higher cost. As we knew that our application won't be working
+with that big amounts of data, where the database performance could be limiting, we decided to go on with Amazon RDS.
+
+
+### Amazon S3
+We planned to use amazon S3 service to serve our static content. We tried to set up our application to do so,
+however we ran into a problem while granting our AWS root user programmatic access
+to the S3 bucket, due to insufficient permissions (probably we are only using the education account).
+Because of this, we were not able to collect our static files and place it to the S3 bucket when deploying 
+a new version of the application. If we still wanted to leverage the use of S3 bucket to serve our static content (images, css...),
+we would have to upload each new file into the bucket manually. That seemed too inconvenient, hence we decided
+to store the static content within our EC2 instances. 
+AWS S3 service is however still used within Elastic Beanstalk to store different versions of our deployments. 
+
+### AWS IAM
+As mentioned in the S3 section, we tried to grant our root AWS user some permissions, but it did not go well. 
+This was with the use of AWS IAM service. We can imagine the use of the service to achieve
+various goals, however it does not seem that useful within the education account, where we don't have many permissions.
 
 # Listing the hours invested, by each member, for all the main tasks of the project (i.e., architectural design, research and documentation on services and resources, coding, meetings, written documentation, etc). What is the project deviation in hours. How could the team have deviated less from the initial hour count breakdown?
 
