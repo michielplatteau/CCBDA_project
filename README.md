@@ -97,22 +97,16 @@ combining the back-end capabilities of Django, Bootstrap's responsive design, an
 Michiel
 
 # Description of the methodology used to create the project: division of responsibilities, meetings organization, exchange of ideas and documentation, created working environments (development, production, staging), tools used, etc.
-Creating this project involved several steps and methodologies that helped us divide tasks equally and work in a harmonious environment and in synergy.
+Creating this project involved several steps and methodologies that helped us divide tasks equally and work in a harmonious environment and in synergy:
 
 Division of Responsibilities:
-
 Project Manager: We chose ... to be our project manager, he coordinates between the team members divide tasks and makes sure that everyone completed his task. 
 
 Development Team: 
-
 Roman was responsible for designing the wireframes and developing the website using the Django framework.
-
 Martin was responsible for creating and managing the AWS services that we needed for our project, collecting each team member's work and creating a connection between the application and the database.
-
- ... Was responsible for designing the interactive visualizations.
- 
-Samar was responsible for the preprocessing of the data and she worked on the Machine learning part where she tested several methods and libraries for the prediction, compared their performances and plotted the predictions with the best performing method.
-
+... Was responsible for designing the interactive visualizations.
+ Samar was responsible for the preprocessing of the data and she worked on the Machine learning part where she tested several methods and libraries for the prediction, compared their performances and plotted the predictions with the best performing method.
 .........
 
 Meeting organization:
@@ -120,14 +114,12 @@ Meeting organization:
  
  Regular Meetings: 
  In order to divide tasks, stay up to date on what each member has done and make sure that the work is going as planned, each week on Thursday we have a meeting in which we discuss the problems that we have encountered and the improvements that we should make, we also discuss with the professor what we have done and ask for guidance and for tools that may help us with developing the project.
+ After each meeting we define and prioritize tasks for the next sprint and we come up with a plan for the next week that we put on that we practically respect everytime, and if we couldn't fully finish the last week's tasks we discuss the problem that we have encountered and come up with ideas to overcome them. During these weeks each group member did his best in developing the project and delivering a good work, the work may not have been equally divided each week but in the end everyone has done as everyone else.
  
-After each meeting we define and prioritize tasks for the next sprint and we come up with a plan for the next week that we put on that we practically respect everytime, and if we couldn't fully finish the last week's tasks we discuss the problem that we have encountered and come up with ideas to overcome them. During these weeks each group member did his best in developing the project and delivering a good work, the work may not have been equally divided each week but in the end everyone has done as everyone else.
-
+ Working environments:
 Also during the week we discuss and exchange ideas via a social media and we present the progress that we are doing, help each other when someone has a problem in his part.
-
- For the dividing the tasks we were using the Trello platform in order to share the plan and the tasks advancement with everyone.
- 
- For uploading the work we used this Github repo in which we gathered the work of each member.
+For dividing the tasks we were using the Trello platform in order to share the plan and the tasks advancement with everyone.
+For uploading the work done we used this Github repo in which we gathered the work of each member.
  
 
 # Description of the main problems encountered and the solutions implemented regarding coding, team organization, services, and resources used.
