@@ -126,6 +126,11 @@ For uploading the work done we used this Github repo in which we gathered the wo
 # Description of the main problems encountered and the solutions implemented regarding coding, team organization, services, and resources used.
 
 Everyone will tell something about his problems
+
+The problem that I have encountered (Samar) while working on the data is the lack of resources and the fact that some resources had restricted access so searching for open source data was a bit challenging.
+The other problem was after the preprocessing part where I had to do it all over again each time I change the machine learning method I'm working with for the prediction.
+The usual prediction methods such as the SVM (Support Vector Machine) and the RF (Random Forest) were not very convincing on the data predicted since the data we had was time series data, so I had to look for other, more accurate, libraries and to learn how they are implemented. I found the Prophet library which is an open source software released by Facebook’s Core Data Science team. In using it, I looked for some examples I found on the internet about previous projects and I also used the library's documentation that helped me in understanding how are its methods implemented.
+
 ## Django application deployment / AWS services management (Martin)
 Deploying a simple python application with no frameworks and dependencies is 
 very simple thanks to Elastic Beanstalk. However, when a framework such as Django is included,
