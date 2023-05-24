@@ -90,6 +90,7 @@ experience, we had to carefully balance the modification requirements with the f
 develop a unified and user-friendly online application that shows data in an intuitive and aesthetically pleasing way by
 combining the back-end capabilities of Django, Bootstrap's responsive design, and JavaScript's interaction.
 
+### Machine learning
 
 
 
