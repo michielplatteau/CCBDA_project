@@ -23,8 +23,8 @@ Added Features:
 
 Interactive Map: We have successfully implemented an interactive map feature that visualizes the events and locations
 related to the Russian-Ukrainian war conflict. Users can explore the map, navigate different regions, and gain a spatial
-understanding of the conflict's impact. This feature enhances the user experience and provides a dynamic way to engage
-with the data.
+understanding of the conflict's impact. Additionally, they can choose which type of events are wanted to be shown in the 
+map. This feature enhances the user experience and provides a dynamic way to engage with the data.
 
 Unimplemented Features (Adjusted Approach):
 
@@ -89,6 +89,22 @@ these components to meet our own design or functionality needs. In order to prov
 experience, we had to carefully balance the modification requirements with the framework's capabilities. We were able to
 develop a unified and user-friendly online application that shows data in an intuitive and aesthetically pleasing way by
 combining the back-end capabilities of Django, Bootstrap's responsive design, and JavaScript's interaction.
+
+### Charts and maps
+
+With the idea of the layout present, we have thought of different alternatives to implement different alternatives that
+were compatible with our implementation. One of the tools that we have considered is Tableau, which is an excellent tool
+to create elegant dashboards. We have finally opted for Chart.js, which allows more customization to add our own
+predicted models and can be easily embedded in our web application. Apart from charts we have added to our application
+an interactive map to show recent events related to
+the war. The events shown in the map can be filtered by the type. This map has been created through Leaflet.
+
+The data shown in the visualizations have to be up-to-date all the time, so it have to be retrieved from a database that
+is periodically updated with new data every time the web is requested. To do this we have made use of Django models that
+allow us to define data instance types. This instance types are linked to tables in a relational database such as Amazon
+RDS.
+
+
 
 ### Machine learning
 
