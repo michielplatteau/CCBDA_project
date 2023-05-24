@@ -1,20 +1,38 @@
 # About project
 
-We are excited to present our web application that offers in-depth insights into the Russian-Ukrainian armed struggle. Our platform provides a wide selection of interactive graphs and charts that highlight key facts and trends pertaining to this intricate battle. Users can investigate important parameters like casualties, equipment deployment, and other crucial issues through painstakingly curated data. The impact of the conflict is succinctly and clearly depicted in these visualizations, enabling users to comprehend the gravity of the situation and its changing dynamics.
+We are excited to present our web application that offers in-depth insights into the Russian-Ukrainian armed struggle.
+Our platform provides a wide selection of interactive graphs and charts that highlight key facts and trends pertaining
+to this intricate battle. Users can investigate important parameters like casualties, equipment deployment, and other
+crucial issues through painstakingly curated data. The impact of the conflict is succinctly and clearly depicted in
+these visualizations, enabling users to comprehend the gravity of the situation and its changing dynamics.
 
-The use of predictive analytics in our product is one of its unique advantages. We provide users forecasted trends and potential futures using historical data and sophisticated algorithms. By enabling analysts, researchers, and politicians to make defensible judgments based on data-driven projections, this vital tool improves strategic planning and risk assessment.
+The use of predictive analytics in our product is one of its unique advantages. We provide users forecasted trends and
+potential futures using historical data and sophisticated algorithms. By enabling analysts, researchers, and politicians
+to make defensible judgments based on data-driven projections, this vital tool improves strategic planning and risk
+assessment.
 
-Our web application also features an immersive interactive map that highlights key moments during the war, in addition to the charts and graphs. Users can explore various areas, follow the development of the conflict, and develop a more detailed spatial grasp of the current dynamics. For journalists, researchers, and anybody else looking for a thorough grasp of the geographic backdrop of the war and its effects on the impacted areas, this feature is an extremely useful resource.
+Our web application also features an immersive interactive map that highlights key moments during the war, in addition
+to the charts and graphs. Users can explore various areas, follow the development of the conflict, and develop a more
+detailed spatial grasp of the current dynamics. For journalists, researchers, and anybody else looking for a thorough
+grasp of the geographic backdrop of the war and its effects on the impacted areas, this feature is an extremely useful
+resource.
 
 # Differences in scope from the project first draft
 
 Added Features:
 
-Interactive Map: We have successfully implemented an interactive map feature that visualizes the events and locations related to the Russian-Ukrainian war conflict. Users can explore the map, navigate different regions, and gain a spatial understanding of the conflict's impact. This feature enhances the user experience and provides a dynamic way to engage with the data.
+Interactive Map: We have successfully implemented an interactive map feature that visualizes the events and locations
+related to the Russian-Ukrainian war conflict. Users can explore the map, navigate different regions, and gain a spatial
+understanding of the conflict's impact. This feature enhances the user experience and provides a dynamic way to engage
+with the data.
 
 Unimplemented Features (Adjusted Approach):
 
-Automated Predictions: We have modified our strategy due to limitations in using SageMaker for automating predictions. Instead, in order to produce predictions based on the given data, we created Python code and made use of modules from other libraries. We will put in place an automatic updating mechanism to make sure that projections are updated appropriately because the data is not real-time and is only updated every two weeks. With this strategy, even in the absence of real-time data integration, we can retain forecast accuracy and give consumers insightful information.
+Automated Predictions: We have modified our strategy due to limitations in using SageMaker for automating predictions.
+Instead, in order to produce predictions based on the given data, we created Python code and made use of modules from
+other libraries. We will put in place an automatic updating mechanism to make sure that projections are updated
+appropriately because the data is not real-time and is only updated every two weeks. With this strategy, even in the
+absence of real-time data integration, we can retain forecast accuracy and give consumers insightful information.
 
 
 # How does the code do the above? Description and architectural diagram of the different parts.
@@ -28,7 +46,21 @@ Everyone will tell something about his part:
 -	
 ## Designing wireframes and implementing layout
 
-Our web application's development process started with the creation of wireframes using the well-known design program Figma. Wireframes helped us define the positioning and interactions of various elements on the user interface as well as the initial structure and layout of the program. Before beginning the implementation stage, this step assisted us in visualizing the overall design and layout. After the wireframes were complete, we went on to design the Django application's layout. With the help of the robust web framework Django, we can create scalable and dynamic web applications since it adheres to the Model-View-Controller (MVC) architectural pattern. We used Bootstrap, a well-known front-end framework that offers a variety of pre-built components and styles, to speed up the layout building process. However as we moved from them to actual implementation, we discovered that several design aspects were difficult to implement or incompatible with the selected front-end framework, Bootstrap. To guarantee the design integrity while working within the framework's limitations, we had to make tweaks and discover other alternatives. Although Bootstrap offered a broad variety of pre-built components and styles, there were occasionally restrictions on how we might modify these components to meet our own design or functionality needs. In order to provide a uniform user interface and user experience, we had to carefully balance the modification requirements with the framework's capabilities. We were able to develop a unified and user-friendly online application that shows data in an intuitive and aesthetically pleasing way by combining the back-end capabilities of Django, Bootstrap's responsive design, and JavaScript's interaction.
+Our web application's development process started with the creation of wireframes using the well-known design program
+Figma. Wireframes helped us define the positioning and interactions of various elements on the user interface as well as
+the initial structure and layout of the program. Before beginning the implementation stage, this step assisted us in
+visualizing the overall design and layout. After the wireframes were complete, we went on to design the Django
+application's layout. With the help of the robust web framework Django, we can create scalable and dynamic web
+applications since it adheres to the Model-View-Controller (MVC) architectural pattern. We used Bootstrap, a well-known
+front-end framework that offers a variety of pre-built components and styles, to speed up the layout building process.
+However, as we moved from them to actual implementation, we discovered that several design aspects were difficult to
+implement or incompatible with the selected front-end framework, Bootstrap. To guarantee the design integrity while
+working within the framework's limitations, we had to make tweaks and discover other alternatives. Although Bootstrap
+offered a broad variety of pre-built components and styles, there were occasionally restrictions on how we might modify
+these components to meet our own design or functionality needs. In order to provide a uniform user interface and user
+experience, we had to carefully balance the modification requirements with the framework's capabilities. We were able to
+develop a unified and user-friendly online application that shows data in an intuitive and aesthetically pleasing way by
+combining the back-end capabilities of Django, Bootstrap's responsive design, and JavaScript's interaction.
 
 
 
@@ -50,7 +82,44 @@ Martin
 
 # Listing the hours invested, by each member, for all the main tasks of the project (i.e., architectural design, research and documentation on services and resources, coding, meetings, written documentation, etc). What is the project deviation in hours. How could the team have deviated less from the initial hour count breakdown?
 
-Guillem
+[//]: # (Guillem)
+We had planned to spend 23 hours every week for this project. In our first draft we wrote that the tasks we wanted to
+complete in these project were the following ones:
+- Identifying the data sources and their datasets that we wanted to use for the visualizations
+- Preprocessing data
+- Determining the AWS services that we will use
+- Building the web application and designing its interactive visualizations (maps and charts)
+- Implementing predictive models using machine learning techniques
+- Deploying the application with Elastic Beanstalk
+- Identifying problems, testing and optimising the application
+
+Initially we had planned to spend the first week deciding the idea we wanted to develop in this project, then accomplish
+the first two tasks in the second week; in the following two weeks we planned to build the application and the fifth was
+for creating the predictive models. In the sixth week we had to deploy the application and the last week had to be
+devoted to testing and fixing problems.
+
+It has not been possible to follow this initial plan exactly because we have not been able to complete fully complete 
+the tasks every week. Instead, we have had to revisit the work we had done previous weeks because of the
+errors that were found or to implement new ideas or improvements. Even if we have not finished the tasks in the
+corresponding weeks, we have not fully deviated from the initial plan.
+
+The amount of time we have spent on every task has been more or less the one we had planned initially, about 5 hours per
+member and per week.
+
+
+| Team member | Task | Time invested |
+|-------------|------|---------------|
+|             |      |               |
+|             |      |               |
+|             |      |               |
+
+One of the things we could have done to improve our plan is trying to parallelize the tasks and plan more than one cycle
+per task. For example, once we had our first working Django app, we could have worked in parallel on the web design and
+addition of the visualizations of the data in the web and discuss the advancements made during the week on the weekly
+meetings we have had every week. This iterative approach in which the development of the project is carried out in 
+cycles of development-review is more or less the one we have followed in the actual project.
+
+
 
 
 
