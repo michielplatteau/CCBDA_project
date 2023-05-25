@@ -8,7 +8,7 @@ conn = psycopg2.connect(
     port="5432",
     database="CCBDA-warinfo",
     user="postgres",
-    password="1234"
+    password="012345"
 )
 
 # Open the CSV file
@@ -23,8 +23,8 @@ with open('data/cleaned_data_events.csv', 'r') as file:
     # cursor.execute("CREATE TABLE Kills ( day DATE PRIMARY KEY, losses INTEGER);")
 
     # Define the INSERT query
-    insert_query = "INSERT INTO war_info_app_eventsmap2 (latitude, longitude, date, type) \
-    VALUES (%s, %s, %s, %s)"
+    insert_query = "INSERT INTO war_info_app_eventsmap2 (latitude, longitude, date, type, notes) \
+    VALUES (%s, %s, %s, %s, %s)"
 
     data_to_insert = [tuple(row) for row in csv_data]
 
