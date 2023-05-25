@@ -8,9 +8,7 @@ from django.utils import timezone
 from datetime import datetime, timedelta
 from numpy.polynomial import Polynomial
 
-from war_info_app.models import TestModel3
-from war_info_app.models import Kills
-from war_info_app.models import EventsMap
+from war_info_app.models import TestModel3, Kills, EventsMap, EventsMap2, Equipment, EquipmentPrediction
 
 
 # DEFINE OUR VIEWS HERE
@@ -137,7 +135,7 @@ def index2(request):
         events_data.append([str(x.date)[:10], x.type, x.location, x.latitude, x.longitude, x.notes, x.fatalities])
 
     # unpack dict keys / values into two lists
-    dates_events, types_events, locations_events, lat_events, long_events, notes_events, fatalities_events =\
+    dates_events, types_events, locations_events, lat_events, long_events, notes_events, fatalities_events = \
         zip(*events_data)
 
     context = {
@@ -158,3 +156,35 @@ def index2(request):
         "fatalities_events": fatalities_events,
     }
     return render(request, "index2.html", context)
+
+
+def index3(request):
+    # get all rows in table
+    equipment = list(zip(*[[equip.date.strftime('%Y-%m-%d'), equip.aircraft, equip.helicopter, equip.tank, equip.drone] for equip in Equipment.objects.all().order_by('date')]))
+    predictions = list(
+        zip(*[[pred.date.strftime('%Y-%m-%d'), pred.aircraft] for pred in EquipmentPrediction.objects.all().order_by('date')]))
+
+    events = list(zip(*[[event.date.strftime('%Y-%m-%d'), event.type, event.latitude, event.longitude] for event in
+                        EventsMap2.objects.all().order_by('date')]))
+
+    assert equipment[0][-1] < predictions[0][0]
+
+    context = {
+        "equipment": list(zip(*equipment)),
+        "equipment_dates": equipment[0],
+        "equipment_aircraft": equipment[1],
+        "equipment_helicopter": equipment[2],
+        "equipment_tank": equipment[3],
+        "equipment_drone": equipment[4],
+
+        "equipment_prediction": list(zip(*predictions)),
+        "equipment_prediction_dates": equipment[0] + predictions[0],
+        "equipment_prediction_aircraft": equipment[1] + predictions[1],
+
+        "events_dates": events[0],
+        "events_types": events[1],
+        "events_latitudes": events[2],
+        "events_longitudes": events[3],
+    }
+
+    return render(request, "index3.html", context)

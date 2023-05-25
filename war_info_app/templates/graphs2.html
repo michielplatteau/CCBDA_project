@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>CCBDA war_info</title>
+</head>
+<body>
+  <style>
+      #chart-wrapper {
+        display: inline-block;
+        position: relative;
+        width: 40%;
+      }
+  </style>
+  <div id="chart-wrapper">
+      <canvas id="myChart3" width="800" height="400"></canvas>
+      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+{#      <script src="https://cdn.jsdelivr.net/npm/chart.js@^3"></script>#}
+      <script src="https://cdn.jsdelivr.net/npm/luxon@^2"></script>
+      <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-luxon@^1"></script>
+      <script>
+      const ctx3 = document.getElementById('myChart3').getContext('2d');
+      const myChart3 = new Chart(ctx3, {
+          type: 'line',
+          data: {
+            labels : [{% for item in equipment_prediction_dates %}"{{ item }}",{% endfor %}],
+              datasets: [{
+                label: "Aircraft",
+                data : [{% for item in equipment_aircraft %}{{ item }},{% endfor %}],
+                backgroundColor: 'rgba(192,75,106,0.2)',
+                borderColor: 'rgb(192,75,93)',
+                borderWidth: 1
+              },{
+                label: "Prediction",
+                data : [{% for item in equipment_prediction_aircraft %}{{ item }},{% endfor %}],
+                backgroundColor: 'rgba(192,75,106,0.2)',
+                borderColor: 'rgb(192,75,93)',
+                borderWidth: 1
+              }
+              ]
+          },
+          options: {
+              scales: {
+                  y: {
+                      beginAtZero: true
+                  },
+                  x: {
+                      type: 'time',
+                      time: {
+                          unit: 'day',
+                          parser: 'yyyy-MM-dd'
+                      }
+                  }
+              }
+          }
+      });
+      </script>
+  </div>
+  <div id="chart-wrapper">
+      <canvas id="myChart2" width="800" height="400"></canvas>
+      <script>
+      const ctx2 = document.getElementById('myChart2').getContext('2d');
+      const myChart2 = new Chart(ctx2, {
+          type: 'line',
+          data: {
+            labels : [{% for item in equipment_dates %}"{{ item }}",{% endfor %}],
+              datasets: [{
+                label: "Aircraft",
+                data : [{% for item in equipment_aircraft %}{{ item }},{% endfor %}],
+                backgroundColor: 'rgba(192,75,106,0.2)',
+                borderColor: 'rgb(192,75,93)',
+                borderWidth: 1
+              },{
+                label: "Helicopter",
+                data : [{% for item in equipment_helicopter %}{{ item }},{% endfor %}],
+                backgroundColor: 'rgba(192,75,173,0.2)',
+                borderColor: 'rgb(192,75,173)',
+                borderWidth: 1
+              },{
+                label: "Tank",
+                data : [{% for item in equipment_tank %}{{ item }},{% endfor %}],
+                backgroundColor: 'rgba(15,222,46,0.2)',
+                borderColor: 'rgb(15,222,46)',
+                borderWidth: 1
+              },{
+                label: "Drone",
+                data : [{% for item in equipment_drone %}{{ item }},{% endfor %}],
+                backgroundColor: 'rgba(74,24,227,0.2)',
+                borderColor: 'rgb(74,24,227)',
+                borderWidth: 1
+              }
+              ]
+          },
+          options: {
+              scales: {
+                  y: {
+                      beginAtZero: true
+                  },
+                  x: {
+                      type: 'time',
+                      time: {
+                          unit: 'day',
+                          parser: 'yyyy-MM-dd'
+                      }
+                  }
+              }
+          }
+      });
+      </script>
+  </div>
+</body>
+</html>
