@@ -57,7 +57,7 @@ There were also some dependencies that were needed for the EC2 instance to be ab
 These are listed in this [file](.ebextensions/01_packages.config). Since the instance runs
 on a Amazon Linux machine, these packages are installed using yum package manager.
 
-In another [file](.ebextensions/02_starter.config) more configuration has been done in order to run
+In another [file](.ebextensions/02_starter.config) more configuration has been set in order to run
 the Django application successfully. Some options are for configuring environment upon deployment,
 these include updating the path to the application wsgi. There also needed to be a setting
 to proxy the requests on static files to the right directory. Then there was a few extra
@@ -92,12 +92,14 @@ combining the back-end capabilities of Django, Bootstrap's responsive design, an
 
 ### Charts and maps
 
-With the idea of the layout present, we have thought of different alternatives to implement different alternatives that
-were compatible with our implementation. One of the tools that we have considered is Tableau, which is an excellent tool
+With the idea of the layout in mind, we have thought of different alternatives to implement the desired visualizations.
+One of the tools that we have considered is Tableau, which is an excellent tool
 to create elegant dashboards. We have finally opted for Chart.js, which allows more customization to add our own
 predicted models and can be easily embedded in our web application. Apart from charts we have added to our application
 an interactive map to show recent events related to
-the war. The events shown in the map can be filtered by the type. This map has been created through Leaflet.
+the war. The events displayed in the map can be filtered by the type and each of them contains a text that briefly
+explains the details of the event. This map has been created through Leaflet, an open-source JavaScript library for
+interactive web mapping.
 
 The data shown in the visualizations have to be up-to-date all the time, so it have to be retrieved from a database that
 is periodically updated with new data every time the web is requested. To do this we have made use of Django models that
@@ -107,7 +109,7 @@ RDS.
 
 
 ### Machine learning
-For the preprocessing I have started by displaying a summary of the dataset,  fill in missing values, categorizing the data and plot some graphs in order to see the relationship between the datasets.
+For the preprocessing I have started by displaying a summary of the dataset,  filling in missing values, categorizing the data and plotting some graphs in order to see the relationship between the datasets.
 After the preprocessing of the data I have started with the prediction using the SVM (Support vector machine) method and the RF (Random Forest) method. In implementing the two methods I have used the libraries pandas, numpy, scipy and sklearn.
 I have compared the performance metrics of the two methods (with the R2 and RMSE) which showed that the two methods have almost the same performance. But I was not quite convinced with the predicted data since the predicted results do not go well with the real data.
 So I tried a different library, the Prophet library which is a procedure for forecasting time series data based on an additive model where non-linear trends are fit with yearly, weekly, and daily seasonality, plus holiday effects. It works best with time series that have strong seasonal effects and several seasons of historical data. prophet is robust to missing data and shifts in the trend, and typically handles outliers well.
@@ -119,10 +121,10 @@ To plot the graphs we have used the library matplotlib.pyplot.
 # Discussion on the use of the twelve-factor methodology as stated in the requirements.
 
 1. Codebase
- * We used github for the codebase. The labs teached us to work with github and we notice that we
-can work with it way better than in february. All our code is pushed to the github repo as much as possible. 
- * We used different branches for different development fases, so we always had a stable main branch. Different
-team members could work on different branches at the same time to develop different things. Then github allows us to
+ * We used GitHub for the codebase. The labs have taught us to work with GitHub, and we have noticed that we
+can work with it way better than in February. All our code is pushed to the GitHub repo as much as possible. 
+ * We used different branches for different development phases, so we always had a stable main branch. Different
+team members could work on different branches at the same time to develop different things. Then GitHub allows us to
 merge everything into a stable deployment branch with all the features working.
  * We did have to use .gitignore to
 prevent pushing too much, such as pychache, big data files, our virtual environment and pycharm's
@@ -139,7 +141,7 @@ npm install luxon chartjs-adapter-luxon --save.
  * But in case one of us didn't want to do this, they could just write their credentials in the settings file.
  * Reviewing this right now, we see that this was not the best approach, as credentials can be pushed to the repo in this way. In future works we should avoid doing this and use configurations, as we learned in the labs.
 4. Backing services
- * We used postgres SQL as a database. This way all our data is saved in a stateless way and is replacable
+ * We used postgres SQL as a database. This way all our data is saved in a stateless way and is replaceable
 by other equivalent resources. Our data gets loaded from the database by our main application during run time.
  * This reduces our codes complexity, seperates different processes and increases flexibility. 
  * We treat this as an attached resource
@@ -157,19 +159,19 @@ This is where elastic beanstalk comes into play. We launch our website through t
  * Since we have a web application we use HTTP requests. The Django framework is really versatile and allows for a lot of options. But it still takes care of a lot of boiler plate code for us.
  * We use the 8000 port for our application, this is the internet port. For the database, postgresql listens to the 5432 port.
 8. Concurrency
- * We deploy our application on Elastic beanstalk.
+ * We deploy our application on Elastic Beanstalk.
 Elastic Beanstalk is a platform-as-a-service (PaaS) offering from AWS that simplifies the deployment and management of applications.
  * Elastic beanstalk can be combined with elastic load balancer if we needed to scale.
 9. Disposability
- * Our Django application has a short life instace. We can start it up and shut it down really fast.
+ * Our Django application has a short life instance. We can start it up and shut it down really fast.
  * Due to the design of the framework, the whole web application doesn't fail due to a single error.
  * For example, if there is an error loading some icon, the application as a whole doesn't fail.
 10. Dev/prod parity
- * We keep consistent configurations througout the different development and production environments as much as possible.
- * We didn't develop everything seperately and merged at the end, which would be a real hassle. We developed
+ * We keep consistent configurations throughout the different development and production environments as much as possible.
+ * We didn't develop everything separately and merged at the end, which would be a real hassle. We developed
 in small increments, that ways errors and bugs were visible early on. We merged into the main application every time, tried deploying it.
 This way our "released" application was updated as much as possible and as small steps as possible.
- * By debugging and "releasing" feature by feature we caught and resolved errors early on (we sure as hell encounterd errors along the way, I guess thats part of learning as well)
+ * By debugging and "releasing" feature by feature we caught and resolved errors early on (we sure as hell encountered errors along the way, I guess thats part of learning as well)
 11. Logs
  * Our application is not super big and we are a relatively small development team with 5 people.
  * The django framework and postgres connecting (psycopg2) take care of
@@ -178,9 +180,9 @@ a lot of logging and inform us live when errors occur, we saw a lot of 404's...
  * We also use the python "assert" to catch errors early on during development
 12. Admin processes
  * We use different codes for housekeeping, such as filling the database, cleaning the data, doing machine learning.
- * By seperating this we keep everything as clean as possible.
+ * By separating this we keep everything as clean as possible.
  * A lot of housekeeping is done by the Django framework. Such as cleaning tasks, monitoring and alerting.
- * Since we don't have a really complex project we didn't implement an immense ammount of admin processes.
+ * Since we don't have a really complex project we didn't implement an immense amount of admin processes.
 
 # Description of the methodology used to create the project: division of responsibilities, meetings organization, exchange of ideas and documentation, created working environments (development, production, staging), tools used, etc.
 Creating this project involved several steps and methodologies that helped us divide tasks equally and work in a harmonious environment and in synergy:
@@ -245,7 +247,7 @@ without any problems, it was a very satisfying feeling.
 
 ## Chartjs
 
-Chartjs worked really well from the start with basic dummy data. We were happy with the responsiveness, interactiveness and the fact that everything rescales well to the window size. When working with the real data we noticed it was a lot harder to customize everything exactly how we wanted it and using the dynamically loaded data. In general we are happy with the result, but we wanted to do more. For example we wanted to make a date selector to choose on the web application for which period we want to see the graphs. After a lot of trying different things, we saw that it messed with other things and we didn't get it to propoerly work. So we decided to not include it and settled on this final result. Although we wated to make it better, we still learned a lot from the process.
+Chartjs worked really well from the start with basic dummy data. We were happy with the responsiveness, interactiveness and the fact that everything rescales well to the window size. When working with the real data we noticed it was a lot harder to customize everything exactly how we wanted it and using the dynamically loaded data. In general we are happy with the result, but we wanted to do more. For example we wanted to make a date selector to choose on the web application for which period we want to see the graphs. After a lot of trying different things, we saw that it messed with other things and we didn't get it to properly work. So we decided to not include it and settled on this final result. Although we wanted to make it better, we still learned a lot from the process.
 
 # For each of the services and resources used, explanation on how project benefits from them. Giving some alternatives to obtain similar results and briefly explaining why have been discarded.
 
@@ -279,10 +281,10 @@ patching or backups. Setting the service up to work with our Elastic Beanstalk w
 
 In the project proposal we were also considering the use of Aurora or DynamoDB. 
 Based on the data we chose to use in our application, we realized that it 
-will be better to use a relational database. Therefore, DynamoDB was not a possible choice anymore
+would be better to use a relational database. Therefore, DynamoDB was not a possible choice anymore
 as it is a NoSQL database. That left us with Aurora and RDS which are both relational
 database services and both of them are compatible with PostgreSQL database. We found out that Aurora 
-might achieve a better performance, but with a higher cost. As we knew that our application won't be working
+might achieve a better performance, but with a higher cost. As we knew that our application would not be working
 with that big amounts of data, where the database performance could be limiting, we decided to go on with Amazon RDS.
 
 
@@ -309,7 +311,7 @@ various goals, however it does not seem that useful within the education account
    1. Charting Capabilities: Chart.js provides a wide range of chart types, including line charts, scatter charts, pie charts, and more. It offers extensive customization options to tailor the charts' appearance, labels, tooltips, and animations.
    Getting acquainted with this could really help us in our future.
 
-   2. Interactive: Chart.js allows for interactive features like hovering over data points to display tooltips, zooming, and click events. The charts are responsive, automatically adjusting to different screen sizes, thats great compared to just using png graphs.
+   2. Interactive: Chart.js allows for interactive features like hovering over data points to display tooltips, zooming, and click events. The charts are responsive, automatically adjusting to different screen sizes, that is great compared to just using png graphs.
 
    3. Integration with Django: Chart.js can be easily integrated with Django, enabling you to dynamically generate charts based on the war data stored in our database. Models.py allow us to easily pass the data.
 
@@ -317,10 +319,11 @@ various goals, however it does not seem that useful within the education account
 
 2. Alternatives we considered for charting:
 
-   1. Pyplot (Matplotlib): Pyplot is a popular option for creating static visualizations. However, compared to Chart.js, it does not provide the same level of interactivity and responsiveness for a web-based application. Plus: we allready can work quite well with this and we would learn less by implementing this.
+   1. Pyplot (Matplotlib): Pyplot is a popular option for creating static visualizations. However, compared to Chart.js, it does not provide the same level of interactivity and responsiveness for a web-based application. Plus: we already can work quite well with this and we would learn less by implementing this.
 
-   2. Tableau: Tableau is a powerful data visualization tool that offers a wide range of features and capabilities, and it was suggested by the professor. However, after trying it and not getting it to work immediately. We
-   did some further research and discovered more options. Internet articles made it clear that chart js might be a better fit for us and we really liked the interactiveness and the design.
+   2. Tableau: Tableau is a powerful data visualization tool that offers a wide range of features and capabilities, and
+   it was suggested by the professor. However, after trying it and not getting it to work immediately. We did some
+   further research and discovered more options. Internet articles made it clear that chart js might be a better fit for us and we really liked the interactiveness and the design.
 
 
 
@@ -351,14 +354,14 @@ The amount of time we have spent on every task has been more or less the one we 
 member and per week.
 
 
-| Team member | Task                                                             | Time invested |
-|-------------|------------------------------------------------------------------|---------------|
-| Michiel     | Creating a first Django application and connecting to postgres   | 3 hours       |
-| Michiel     | Researching different chart options (pyplot, tableau, chartjs)   | 2 hours       |
-| Michiel     | Implementing the first chart prototype with dummy data           | 4 hours       |
-| Michiel     | Making the graphs work in chartjs with the cleaned data          | 2 hours       |
-| Michiel     | Making the graphs interactive                                    | 4 hours       |
-|             |                                                                  |               |
+| Team member | Task                                                           | Time invested |
+|-------------|----------------------------------------------------------------|---------------|
+| Michiel     | Creating a first Django application and connecting to postgres | 3 hours       |
+| Michiel     | Researching different chart options (pyplot, tableau, chartjs) | 2 hours       |
+| Michiel     | Implementing the first chart prototype with dummy data         | 4 hours       |
+| Michiel     | Making the graphs work in chartjs with the cleaned data        | 2 hours       |
+| Michiel     | Making the graphs interactive                                  | 4 hours       |
+| Guillem     | Researching different ways to add an interactive map           |               |
 
 
 One of the things we could have done to improve our plan is trying to parallelize the tasks and plan more than one cycle
