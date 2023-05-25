@@ -315,11 +315,15 @@ The amount of time we have spent on every task has been more or less the one we 
 member and per week.
 
 
-| Team member | Task | Time invested |
-|-------------|------|---------------|
-|             |      |               |
-|             |      |               |
-|             |      |               |
+| Team member | Task                                                             | Time invested |
+|-------------|------------------------------------------------------------------|---------------|
+| Michiel     | Creating a first Django application and connecting to postgres   | 3 hours       |
+| Michiel     | Researching different chart options (pyplot, tableau, chartjs)   | 2 hours       |
+| Michiel     | Implementing the first chart prototype with dummy data           | 4 hours       |
+| Michiel     | Making the graphs work in chartjs with the cleaned data          | 2 hours       |
+| Michiel     | Making the graphs interactive                                    | 4 hours       |
+|             |                                                                  |               |
+
 
 One of the things we could have done to improve our plan is trying to parallelize the tasks and plan more than one cycle
 per task. For example, once we had our first working Django app, we could have worked in parallel on the web design and
