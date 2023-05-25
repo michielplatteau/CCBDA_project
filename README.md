@@ -107,7 +107,13 @@ RDS.
 
 
 ### Machine learning
-
+For the preprocessing I have started by displaying a summary of the dataset,  fill in missing values, categorizing the data and plot some graphs in oreger to see the relationship between the datasets.
+After the preprocessing of the data I have started with the prediction using the SVM(Support vector machine) method and the RF(Random Forest) method. In implemeting the two methods I have used the libraries pandas,numpy,scipy and sklearn.
+I have compared the performance metrics of the two methods( with the R2 and RMSE) which showed that the two methods have almost the same performance. But I was not quite convienced with the predicted data since the predicted results does not go well with the real data. 
+So I tried a different librar, the Prophet library which is a procedure for forecasting time series data based on an additive model where non-linear trends are fit with yearly, weekly, and daily seasonality, plus holiday effects. It works best with time series that have strong seasonal effects and several seasons of historical data. Prophet is robust to missing data and shifts in the trend, and typically handles outliers well.
+And using this library we got the best predicted results, we had a value of R2=0.79 while whith the other methods we had a value of R2=0.4 and for the prediction performance the closest the value of R2 to 1 the better.
+So we proceded with these results and we plotted the graph of the predicted data with the bound showing the prediction intervals or uncertainty bounds around the forecasted values.
+To plot the graphs we have used the library matplotlib.pyplot.
 
 
 # Discussion on the use of the twelve-factor methodology as stated in the requirements.
@@ -301,6 +307,15 @@ After running the django server you can find the chart prototype it under the /t
 I used this tutorial for chart.js with django:
 
 https://pybit.es/articles/how-to-make-a-nice-graph-using-django-and-chart-js/.
+
+Prophet library documentation:
+
+https://facebook.github.io/prophet/docs/quick_start.html
+https://facebook.github.io/prophet/
+
+Sources of datasets collected:
+https://www.kaggle.com/datasets/xc1011/ukraine-russia-war-clean-datasets
+https://data.humdata.org/dataset/ucdp-data-for-ukraine
 
 ## Relevant files to this part
 
