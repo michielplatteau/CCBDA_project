@@ -12,7 +12,7 @@ conn = psycopg2.connect(
 )
 
 # Open the CSV file
-with open('data/interpretedsata.csv', 'r') as file:
+with open('data/interpreted_data_Michiel.csv', 'r') as file:
     csv_data = csv.reader(file)
     next(csv_data)
 
@@ -24,9 +24,9 @@ with open('data/interpretedsata.csv', 'r') as file:
 
     # Define the INSERT query
     insert_query = f"INSERT INTO war_info_app_equipmentprediction (date,\
-    aircraft,\
     aircraft_lower,\
-    aircraft_upper)\
+    aircraft_upper,\
+    aircraft)\
     VALUES (%s, %s, %s, %s)"
 
     data_to_insert = [tuple(row) for row in csv_data]

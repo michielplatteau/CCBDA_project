@@ -159,6 +159,7 @@ def index2(request):
 
 
 def index3(request):
+    # EquipmentPrediction.objects.all().delete()
     # get all rows in table
     equipment = list(zip(*[[equip.date.strftime('%Y-%m-%d'), equip.aircraft, equip.helicopter, equip.tank, equip.drone] for equip in Equipment.objects.all().order_by('date')]))
     predictions = list(
