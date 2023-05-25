@@ -234,7 +234,7 @@ Overall, this kind of work was quite new to me, maybe that's why it took me a bi
 however when all problems got resolved and the application was running and accessible on a public address
 without any problems, it was a very satisfying feeling.
 
-## Chartjs (Michiel)
+## Chartjs
 
 Chartjs worked really well from the start with basic dummy data. We were happy with the responsiveness, interactiveness and the fact that everything rescales well to the window size. When working with the real data we noticed it was a lot harder to customize everything exactly how we wanted it and using the dynamically loaded data. In general we are happy with the result, but we wanted to do more. For example we wanted to make a date selector to choose on the web application for which period we want to see the graphs. After a lot of trying different things, we saw that it messed with other things and we didn't get it to propoerly work. So we decided to not include it and settled on this final result. Although we wated to make it better, we still learned a lot from the process.
 
