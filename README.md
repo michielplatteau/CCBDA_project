@@ -117,9 +117,70 @@ To plot the graphs we have used the library matplotlib.pyplot.
 
 
 # Discussion on the use of the twelve-factor methodology as stated in the requirements.
-Michiel
 
-Test
+1. Codebase
+ * We used github for the codebase. The labs teached us to work with github and we notice that we
+can work with it way better than in february. All our code is pushed to the github repo as much as possible. 
+ * We used different branches for different development fases, so we always had a stable main branch. Different
+team members could work on different branches at the same time to develop different things. Then github allows us to
+merge everything into a stable deployment branch with all the features working.
+ * We did have to use .gitignore to
+prevent pushing too much, such as pychache, big data files, our virtual environment and pycharm's
+.idea files.
+2. Dependencies
+ * It is really important to declare and control dependencies. We used pip freeze > requirements.txt
+for this. It is really easy to use, and we used it throughout the project to keep the
+requirements.txt file up to date.
+ * Not every depency was through pip, so we used a markdown file
+to keep eachother up to date, e.g. 
+npm install luxon chartjs-adapter-luxon --save.
+3. Configuration
+ * Instead of using configurations, we put our credentials in the code and all used the same ones for postgres.
+ * For the AWS services, only 1 team member had access to deploy.
+ * Reviewing this right now, we see that this was not the best approach. In future works we should avoid doing this and use configurations, as we learned in the labs.
+4. Backing services
+ * We used postgres SQL as a database. This way all our data is saved in a stateless way and is replacable
+by other equivalent resources. Our data gets loaded from the database by our main application during run time.
+ * This reduces our codes complexity, seperates different processes and increases flexibility. 
+ * We treat this as an attached resource
+5. Build, release, run 
+ * The build stage involves compiling and assembling the application's source code, dependencies, and assets into a deployable artifact. This stage is responsible for transforming the source code into an executable form that can be executed by the runtime environment.
+We do tests and database migrations before we move on to the next step.
+ * The release stage takes the built artifact from the build stage and combines it with the necessary configuration to create a deployable release. It involves bundling the application code with its specific configuration, such as environment variables or deployment parameters. The release should be versioned and represent a ready-to-deploy package of the application.
+We combine our built artifact with the configuration for the database etc for launching.
+ * The run stage is where the application is executed or deployed in the target environment. It involves launching the application and its dependencies in the runtime environment, configuring any necessary resources (such as databases or queues), and managing the execution of the application.
+This is where elastic beanstalk comes into play. We launch our website through this AWS service, which takes care of a lot of things for us.
+6. Processes
+ * Our Django application follows the principle of stateless processes. In a stateless architecture, each request is handled independently without relying on the state stored in the server.
+ * Elastic beanstalk takes care of the horizontal scalability of our processes without having to worry about it to much.
+7. Port binding
+ * Since we have a web application we use HTTP requests. The Django framework is really versatile and allows for a lot of options. But it still takes care of a lot of boiler plate code for us.
+ * We use the 8000 port for our application, this is the internet port. For the database, postgresql listens to the 5432 port.
+8. Concurrency
+ * We deploy our application on Elastic beanstalk.
+Elastic Beanstalk is a platform-as-a-service (PaaS) offering from AWS that simplifies the deployment and management of applications.
+ * Elastic beanstalk can be combined with elastic load balancer if we needed to scale.
+9. Disposability
+ * Our Django application has a short life instace. We can start it up and shut it down really fast.
+ * Due to the design of the framework, the whole web application doesn't fail due to a single error.
+ * For example, if there is an error loading some icon, the application as a whole doesn't fail.
+10. Dev/prod parity
+ * We keep consistent configurations througout the different development and production environments as much as possible.
+ * We didn't develop everything seperately and merged at the end, which would be a real hassle. We developed
+in small increments, that ways errors and bugs were visible early on. We merged into the main application every time, tried deploying it.
+This way our "released" application was updated as much as possible and as small steps as possible.
+ * By debugging and "releasing" feature by feature we caught and resolved errors early on (we sure as hell encounterd errors along the way, I guess thats part of learning as well)
+11. Logs
+ * Our application is not super big and we are a relatively small development team with 5 people.
+ * The django framework and postgres connecting (psycopg2) take care of
+a lot of logging and inform us live when errors occur, we saw a lot of 404's...
+ * Further than that we used the standard output, printing to terminal to output different variables etc to check if everything is working correctly.
+ * We also use the python "assert" to catch errors early on during development
+12. Admin processes
+ * We use different codes for housekeeping, such as filling the database, cleaning the data, doing machine learning.
+ * By seperating this we keep everything as clean as possible.
+ * A lot of housekeeping is done by the Django framework. Such as cleaning tasks, monitoring and alerting.
+ * Since we don't have a really complex project we didn't implement an immense ammount of admin processes.
 
 # Description of the methodology used to create the project: division of responsibilities, meetings organization, exchange of ideas and documentation, created working environments (development, production, staging), tools used, etc.
 Creating this project involved several steps and methodologies that helped us divide tasks equally and work in a harmonious environment and in synergy:
