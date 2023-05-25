@@ -101,3 +101,38 @@ svg.svg-inline--fa.fa-facebook.fa-w-16, svg.svg-inline--fa.fa-twitter.fa-w-16, s
     color: #1C64AC;
     font-size: 30px;
 }
+
+li.nav-item:hover {
+    background-color: rgba(38, 59, 151, 0.1);
+    transition: background-color 0.3s ease;
+}
+
+li.list-inline-item.p-2 a {
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+}
+
+li.list-inline-item.p-2 a:hover {
+    opacity: 1;
+}
+
+a.navbar-brand.mx-4 {
+  text-decoration: none;
+  position: relative;
+}
+
+a.navbar-brand.mx-4::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: #000; /* Replace with desired color */
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+
+a.navbar-brand.mx-4:hover::after {
+  transform: scaleX(1);
+}

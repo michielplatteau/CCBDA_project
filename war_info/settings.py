@@ -101,7 +101,7 @@ else:
             'ENGINE': 'django.db.backends.postgresql_psycopg2',
             'NAME': 'CCBDA-warinfo',
             'USER': 'postgres',
-            'PASSWORD': '1234',
+            'PASSWORD': '012345',
             'HOST': 'localhost',
             'PORT': '5432'
         }
