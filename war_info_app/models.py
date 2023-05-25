@@ -75,3 +75,4 @@ class EventsMap2(models.Model):
     latitude = models.FloatField()
     longitude = models.FloatField()
     type = models.TextField()
+    notes = models.TextField()

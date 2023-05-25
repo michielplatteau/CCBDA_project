@@ -164,8 +164,11 @@ def index3(request):
     predictions = list(
         zip(*[[pred.date.strftime('%Y-%m-%d'), pred.aircraft] for pred in EquipmentPrediction.objects.all().order_by('date')]))
 
-    events = list(zip(*[[event.date.strftime('%Y-%m-%d'), event.type, event.latitude, event.longitude] for event in
-                        EventsMap2.objects.all().order_by('date')]))
+    month_ago_date = datetime.now() - timedelta(days=30)
+
+    # events of the last 30 days.
+    events = list(zip(*[[event.date.strftime('%Y-%m-%d'), event.type, event.latitude, event.longitude, event.notes] for event in
+                        EventsMap2.objects.filter(date__gte=month_ago_date).order_by('date')]))
 
     assert equipment[0][-1] < predictions[0][0]
 
@@ -185,6 +188,7 @@ def index3(request):
         "events_types": events[1],
         "events_latitudes": events[2],
         "events_longitudes": events[3],
+        "events_notes": events[4]
     }
 
     return render(request, "index3.html", context)

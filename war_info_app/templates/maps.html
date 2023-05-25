@@ -31,10 +31,10 @@
             maxZoom: 18,
         }).addTo(map);
         // console.log(typeof lat_events)
-        var lat_events = [{% for item in lat_events %}{{ item }},{% endfor %}]
-        var long_events = [{% for item in long_events %}{{ item }},{% endfor %}]
-        var notes_events = [{% for item in notes_events %}"{{ item }}",{% endfor %}];
-        var types_events = [{% for item in types_events %}"{{ item }}",{% endfor %}];
+        var lat_events = [{% for item in events_latitudes %}{{ item }},{% endfor %}]
+        var long_events = [{% for item in events_longitudes %}{{ item }},{% endfor %}]
+        var notes_events = [{% for item in events_notes %}"{{ item }}",{% endfor %}];
+        var types_events = [{% for item in events_types %}"{{ item }}",{% endfor %}];
         var n = lat_events.length
 
         // for (var j = 0; j < n; j++) {
