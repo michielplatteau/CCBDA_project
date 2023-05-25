@@ -61,7 +61,7 @@ with open('data/Ukraine_Black_Sea_2020_2023_Apr28-1 - Sheet1.csv', 'r') as file:
         return new_entry
 
     data_to_insert = [tuple(format_entry(row)) for row in csv_data]
-
+    print(len(data_to_insert[1]))
     # Execute the INSERT query with multiple rows
     cursor.executemany(insert_query, data_to_insert)
 

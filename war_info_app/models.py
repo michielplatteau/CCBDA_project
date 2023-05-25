@@ -37,3 +37,41 @@ class EventsMap(models.Model):
     longitude = models.FloatField()
     notes = models.TextField()
     fatalities = models.IntegerField()
+
+
+class Equipment(models.Model):
+    date = models.DateField()
+    day = models.IntegerField()
+    aircraft = models.IntegerField()
+    helicopter = models.IntegerField()
+    tank = models.IntegerField()
+    apc = models.IntegerField()
+    field_artillery = models.IntegerField()
+    mrl = models.IntegerField()
+    military_auto = models.IntegerField()
+    fuel_tank = models.IntegerField()
+    drone = models.IntegerField()
+    naval_ship = models.IntegerField()
+    anti_aircraft_warfare = models.IntegerField()
+    special_equipment = models.IntegerField()
+    mobile_srbm_system = models.IntegerField()
+    greatest_losses_direction = models.TextField()
+    vehicles_and_fuel_tanks = models.IntegerField()
+    cruise_missiles = models.IntegerField()
+    total_air_units = models.IntegerField()
+    total_naval_units = models.IntegerField()
+    total_ground_units = models.IntegerField()
+
+
+class EquipmentPrediction(models.Model):
+    date = models.DateField()
+    aircraft = models.FloatField()
+    aircraft_lower = models.FloatField()
+    aircraft_upper = models.FloatField()
+
+
+class EventsMap2(models.Model):
+    date = models.DateField()
+    latitude = models.FloatField()
+    longitude = models.FloatField()
+    type = models.TextField()
