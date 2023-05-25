@@ -135,9 +135,9 @@ requirements.txt file up to date.
 to keep eachother up to date, e.g. 
 npm install luxon chartjs-adapter-luxon --save.
 3. Configuration
- * Instead of using configurations, we put our credentials in the code and all used the same ones for postgres.
- * For the AWS services, only 1 team member had access to deploy.
- * Reviewing this right now, we see that this was not the best approach. In future works we should avoid doing this and use configurations, as we learned in the labs.
+ * We made the configuration environment to connect to postgres optional. This way the code automatically recognizes is the environment is filled in, which is the best practice.
+ * But in case one of us didn't want to do this, they could just write their credentials in the settings file.
+ * Reviewing this right now, we see that this was not the best approach, as credentials can be pushed to the repo in this way. In future works we should avoid doing this and use configurations, as we learned in the labs.
 4. Backing services
  * We used postgres SQL as a database. This way all our data is saved in a stateless way and is replacable
 by other equivalent resources. Our data gets loaded from the database by our main application during run time.
@@ -212,9 +212,18 @@ For uploading the work done we used this Github repo in which we gathered the wo
 
 Everyone will tell something about his problems
 
-The problem that I have encountered (Samar) while working on the data is the lack of resources and the fact that some resources had restricted access so searching for open source data was a bit challenging.
+## Data science and cleaning (Samar)
+
+The problem that I have encountered while working on the data is the lack of resources and the fact that some resources had restricted access so searching for open source data was a bit challenging.
 The other problem was after the preprocessing part where I had to do it all over again each time I change the machine learning method I'm working with for the prediction.
 The usual prediction methods such as the SVM (Support Vector Machine) and the RF (Random Forest) were not very convincing on the data predicted since the data we had was time series data, so I had to look for other, more accurate, libraries and to learn how they are implemented. I found the Prophet library which is an open source software released by Facebook’s Core Data Science team. In using it, I looked for some examples I found on the internet about previous projects and I also used the library's documentation that helped me in understanding how are its methods implemented.
+
+## Creation of designs in figma and developing frontend with help of bootstrap (Roman)
+
+I ran into a few difficulties while creating wireframes in Figma. Firstly, determining the optimal layout and composition for the page proved to be crucial. Deciding on the placement of different elements such as headers, navigation menus, content sections, and call-to-action buttons required careful consideration to ensure a visually appealing and user-friendly design. Since I was working with this tool for the first time, I also made many mistakes that cost me some effort to correct (such as incorrect grouping of elements), but designs in wireframes are still much easier to change than the layout of the created page itself, and that is why their initial creation is very important.
+
+I also encountered some difficulties while using Bootstrap for the development process. Customizing the Bootstrap default styles to fit the intended visual design was one of the main problems. It was frequently necessary to alter CSS and override default classes in order to adapt the framework to the particular project requirements while keeping responsiveness. Managing the responsive behavior of the layout across various devices and screen sizes was another difficulty. In order to ensure seamless performance and functionality, it was occasionally necessary to resolve conflicts or inconsistencies that resulted from integrating third-party libraries and customized JavaScript functions into the Bootstrap framework.
+
 
 ## Django application deployment / AWS services management (Martin)
 Deploying a simple python application with no frameworks and dependencies is 
@@ -234,25 +243,11 @@ Overall, this kind of work was quite new to me, maybe that's why it took me a bi
 however when all problems got resolved and the application was running and accessible on a public address
 without any problems, it was a very satisfying feeling.
 
+## Chartjs
+
+Chartjs worked really well from the start with basic dummy data. We were happy with the responsiveness, interactiveness and the fact that everything rescales well to the window size. When working with the real data we noticed it was a lot harder to customize everything exactly how we wanted it and using the dynamically loaded data. In general we are happy with the result, but we wanted to do more. For example we wanted to make a date selector to choose on the web application for which period we want to see the graphs. After a lot of trying different things, we saw that it messed with other things and we didn't get it to propoerly work. So we decided to not include it and settled on this final result. Although we wated to make it better, we still learned a lot from the process.
+
 # For each of the services and resources used, explanation on how project benefits from them. Giving some alternatives to obtain similar results and briefly explaining why have been discarded.
-
-1. Chart.js is a popular JavaScript library for creating interactive and visually appealing charts on the web. Chart.js was chosen for the following reasons:
-
-   1. Charting Capabilities: Chart.js provides a wide range of chart types, including line charts, scatter charts, pie charts, and more. It offers extensive customization options to tailor the charts' appearance, labels, tooltips, and animations.
-   Getting acquainted with this could really help us in our future.
-
-   2. Interactive: Chart.js allows for interactive features like hovering over data points to display tooltips, zooming, and click events. The charts are responsive, automatically adjusting to different screen sizes, thats great compared to just using png graphs.
-
-   3. Integration with Django: Chart.js can be easily integrated with Django, enabling you to dynamically generate charts based on the war data stored in our database. Models.py allow us to easily pass the data.
-
-   4. Open-Source and Well-Maintained: Chart.js is an open-source library with an active community and continuous development. It receives regular updates, bug fixes, and new features.
-
-2. Alternatives we considered for charting:
-
-   1. Pyplot (Matplotlib): Pyplot is a popular option for creating static visualizations. However, compared to Chart.js, it does not provide the same level of interactivity and responsiveness for a web-based application. Plus: we allready can work quite well with this and we would learn less by implementing this.
-
-   2. Tableau: Tableau is a powerful data visualization tool that offers a wide range of features and capabilities, and it was suggested by the professor. However, after trying it and not getting it to work immediately. We
-   did some further research and discovered more options. Internet articles made it clear that chart js might be a better fit for us and we really liked the interactiveness and the design.
 
 ### Elastic Beanstalk
 As planned in the project proposal, the backbone of our project is the AWS Elastic Beanstalk service.
@@ -308,6 +303,24 @@ various goals, however it does not seem that useful within the education account
 
 ### ChartJS
 
+
+1. Chart.js is a popular JavaScript library for creating interactive and visually appealing charts on the web. Chart.js was chosen for the following reasons:
+
+   1. Charting Capabilities: Chart.js provides a wide range of chart types, including line charts, scatter charts, pie charts, and more. It offers extensive customization options to tailor the charts' appearance, labels, tooltips, and animations.
+   Getting acquainted with this could really help us in our future.
+
+   2. Interactive: Chart.js allows for interactive features like hovering over data points to display tooltips, zooming, and click events. The charts are responsive, automatically adjusting to different screen sizes, thats great compared to just using png graphs.
+
+   3. Integration with Django: Chart.js can be easily integrated with Django, enabling you to dynamically generate charts based on the war data stored in our database. Models.py allow us to easily pass the data.
+
+   4. Open-Source and Well-Maintained: Chart.js is an open-source library with an active community and continuous development. It receives regular updates, bug fixes, and new features.
+
+2. Alternatives we considered for charting:
+
+   1. Pyplot (Matplotlib): Pyplot is a popular option for creating static visualizations. However, compared to Chart.js, it does not provide the same level of interactivity and responsiveness for a web-based application. Plus: we allready can work quite well with this and we would learn less by implementing this.
+
+   2. Tableau: Tableau is a powerful data visualization tool that offers a wide range of features and capabilities, and it was suggested by the professor. However, after trying it and not getting it to work immediately. We
+   did some further research and discovered more options. Internet articles made it clear that chart js might be a better fit for us and we really liked the interactiveness and the design.
 
 
 
