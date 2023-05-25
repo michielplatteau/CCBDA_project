@@ -8,7 +8,7 @@ conn = psycopg2.connect(
     port="5432",
     database="CCBDA-warinfo",
     user="postgres",
-    password="012345"
+    password="1234"
 )
 
 # Open the CSV file
