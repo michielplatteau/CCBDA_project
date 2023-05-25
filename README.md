@@ -212,9 +212,18 @@ For uploading the work done we used this Github repo in which we gathered the wo
 
 Everyone will tell something about his problems
 
-The problem that I have encountered (Samar) while working on the data is the lack of resources and the fact that some resources had restricted access so searching for open source data was a bit challenging.
+## Data science and cleaning (Samar)
+
+The problem that I have encountered while working on the data is the lack of resources and the fact that some resources had restricted access so searching for open source data was a bit challenging.
 The other problem was after the preprocessing part where I had to do it all over again each time I change the machine learning method I'm working with for the prediction.
 The usual prediction methods such as the SVM (Support Vector Machine) and the RF (Random Forest) were not very convincing on the data predicted since the data we had was time series data, so I had to look for other, more accurate, libraries and to learn how they are implemented. I found the Prophet library which is an open source software released by Facebook’s Core Data Science team. In using it, I looked for some examples I found on the internet about previous projects and I also used the library's documentation that helped me in understanding how are its methods implemented.
+
+## Creation of designs in figma and developing frontend with help of bootstrap (Roman)
+
+I ran into a few difficulties while creating wireframes in Figma. Firstly, determining the optimal layout and composition for the page proved to be crucial. Deciding on the placement of different elements such as headers, navigation menus, content sections, and call-to-action buttons required careful consideration to ensure a visually appealing and user-friendly design. Since I was working with this tool for the first time, I also made many mistakes that cost me some effort to correct (such as incorrect grouping of elements), but designs in wireframes are still much easier to change than the layout of the created page itself, and that is why their initial creation is very important.
+
+I also encountered some difficulties while using Bootstrap for the development process. Customizing the Bootstrap default styles to fit the intended visual design was one of the main problems. It was frequently necessary to alter CSS and override default classes in order to adapt the framework to the particular project requirements while keeping responsiveness. Managing the responsive behavior of the layout across various devices and screen sizes was another difficulty. In order to ensure seamless performance and functionality, it was occasionally necessary to resolve conflicts or inconsistencies that resulted from integrating third-party libraries and customized JavaScript functions into the Bootstrap framework.
+
 
 ## Django application deployment / AWS services management (Martin)
 Deploying a simple python application with no frameworks and dependencies is 
