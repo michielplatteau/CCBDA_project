@@ -119,6 +119,8 @@ To plot the graphs we have used the library matplotlib.pyplot.
 # Discussion on the use of the twelve-factor methodology as stated in the requirements.
 Michiel
 
+Test
+
 # Description of the methodology used to create the project: division of responsibilities, meetings organization, exchange of ideas and documentation, created working environments (development, production, staging), tools used, etc.
 Creating this project involved several steps and methodologies that helped us divide tasks equally and work in a harmonious environment and in synergy:
 
