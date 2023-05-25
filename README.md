@@ -240,24 +240,6 @@ Chartjs worked really well from the start with basic dummy data. We were happy w
 
 # For each of the services and resources used, explanation on how project benefits from them. Giving some alternatives to obtain similar results and briefly explaining why have been discarded.
 
-1. Chart.js is a popular JavaScript library for creating interactive and visually appealing charts on the web. Chart.js was chosen for the following reasons:
-
-   1. Charting Capabilities: Chart.js provides a wide range of chart types, including line charts, scatter charts, pie charts, and more. It offers extensive customization options to tailor the charts' appearance, labels, tooltips, and animations.
-   Getting acquainted with this could really help us in our future.
-
-   2. Interactive: Chart.js allows for interactive features like hovering over data points to display tooltips, zooming, and click events. The charts are responsive, automatically adjusting to different screen sizes, thats great compared to just using png graphs.
-
-   3. Integration with Django: Chart.js can be easily integrated with Django, enabling you to dynamically generate charts based on the war data stored in our database. Models.py allow us to easily pass the data.
-
-   4. Open-Source and Well-Maintained: Chart.js is an open-source library with an active community and continuous development. It receives regular updates, bug fixes, and new features.
-
-2. Alternatives we considered for charting:
-
-   1. Pyplot (Matplotlib): Pyplot is a popular option for creating static visualizations. However, compared to Chart.js, it does not provide the same level of interactivity and responsiveness for a web-based application. Plus: we allready can work quite well with this and we would learn less by implementing this.
-
-   2. Tableau: Tableau is a powerful data visualization tool that offers a wide range of features and capabilities, and it was suggested by the professor. However, after trying it and not getting it to work immediately. We
-   did some further research and discovered more options. Internet articles made it clear that chart js might be a better fit for us and we really liked the interactiveness and the design.
-
 ### Elastic Beanstalk
 As planned in the project proposal, the backbone of our project is the AWS Elastic Beanstalk service.
 It helps us greatly as it simplifies the deployment process very much. It automates the deployment tasks 
@@ -312,6 +294,24 @@ various goals, however it does not seem that useful within the education account
 
 ### ChartJS
 
+
+1. Chart.js is a popular JavaScript library for creating interactive and visually appealing charts on the web. Chart.js was chosen for the following reasons:
+
+   1. Charting Capabilities: Chart.js provides a wide range of chart types, including line charts, scatter charts, pie charts, and more. It offers extensive customization options to tailor the charts' appearance, labels, tooltips, and animations.
+   Getting acquainted with this could really help us in our future.
+
+   2. Interactive: Chart.js allows for interactive features like hovering over data points to display tooltips, zooming, and click events. The charts are responsive, automatically adjusting to different screen sizes, thats great compared to just using png graphs.
+
+   3. Integration with Django: Chart.js can be easily integrated with Django, enabling you to dynamically generate charts based on the war data stored in our database. Models.py allow us to easily pass the data.
+
+   4. Open-Source and Well-Maintained: Chart.js is an open-source library with an active community and continuous development. It receives regular updates, bug fixes, and new features.
+
+2. Alternatives we considered for charting:
+
+   1. Pyplot (Matplotlib): Pyplot is a popular option for creating static visualizations. However, compared to Chart.js, it does not provide the same level of interactivity and responsiveness for a web-based application. Plus: we allready can work quite well with this and we would learn less by implementing this.
+
+   2. Tableau: Tableau is a powerful data visualization tool that offers a wide range of features and capabilities, and it was suggested by the professor. However, after trying it and not getting it to work immediately. We
+   did some further research and discovered more options. Internet articles made it clear that chart js might be a better fit for us and we really liked the interactiveness and the design.
 
 
 
