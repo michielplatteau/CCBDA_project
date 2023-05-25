@@ -135,9 +135,9 @@ requirements.txt file up to date.
 to keep eachother up to date, e.g. 
 npm install luxon chartjs-adapter-luxon --save.
 3. Configuration
- * Instead of using configurations, we put our credentials in the code and all used the same ones for postgres.
- * For the AWS services, only 1 team member had access to deploy.
- * Reviewing this right now, we see that this was not the best approach. In future works we should avoid doing this and use configurations, as we learned in the labs.
+ * We made the configuration environment to connect to postgres optional. This way the code automatically recognizes is the environment is filled in, which is the best practice.
+ * But in case one of us didn't want to do this, they could just write their credentials in the settings file.
+ * Reviewing this right now, we see that this was not the best approach, as credentials can be pushed to the repo in this way. In future works we should avoid doing this and use configurations, as we learned in the labs.
 4. Backing services
  * We used postgres SQL as a database. This way all our data is saved in a stateless way and is replacable
 by other equivalent resources. Our data gets loaded from the database by our main application during run time.
