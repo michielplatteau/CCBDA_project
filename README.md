@@ -133,8 +133,8 @@ prevent pushing too much, such as pychache, big data files, our virtual environm
  * It is really important to declare and control dependencies. We used pip freeze > requirements.txt
 for this. It is really easy to use, and we used it throughout the project to keep the
 requirements.txt file up to date.
- * Not every depency was through pip, so we used a markdown file
-to keep eachother up to date, e.g. 
+ * Not every dependency was through pip, so we used a markdown file
+to keep each-other up to date, e.g. 
 npm install luxon chartjs-adapter-luxon --save.
 3. Configuration
  * We made the configuration environment to connect to postgres optional. This way the code automatically recognizes is the environment is filled in, which is the best practice.
@@ -143,7 +143,7 @@ npm install luxon chartjs-adapter-luxon --save.
 4. Backing services
  * We used postgres SQL as a database. This way all our data is saved in a stateless way and is replaceable
 by other equivalent resources. Our data gets loaded from the database by our main application during run time.
- * This reduces our codes complexity, seperates different processes and increases flexibility. 
+ * This reduces our codes complexity, separates different processes and increases flexibility. 
  * We treat this as an attached resource
 5. Build, release, run 
  * The build stage involves compiling and assembling the application's source code, dependencies, and assets into a deployable artifact. This stage is responsible for transforming the source code into an executable form that can be executed by the runtime environment.
@@ -207,7 +207,7 @@ Meeting organization:
  Working environments:
 Also during the week we discuss and exchange ideas via a social media and we present the progress that we are doing, help each other when someone has a problem in his part.
 For dividing the tasks we were using the Trello platform in order to share the plan and the tasks advancement with everyone.
-For uploading the work done we used this Github repo in which we gathered the work of each member.
+For uploading the work done we used this GitHub repo in which we gathered the work of each member.
  
 
 # Description of the main problems encountered and the solutions implemented regarding coding, team organization, services, and resources used.
@@ -245,9 +245,20 @@ Overall, this kind of work was quite new to me, maybe that's why it took me a bi
 however when all problems got resolved and the application was running and accessible on a public address
 without any problems, it was a very satisfying feeling.
 
-## Chartjs
+## Chartjs (Michiel)
 
 Chartjs worked really well from the start with basic dummy data. We were happy with the responsiveness, interactiveness and the fact that everything rescales well to the window size. When working with the real data we noticed it was a lot harder to customize everything exactly how we wanted it and using the dynamically loaded data. In general we are happy with the result, but we wanted to do more. For example we wanted to make a date selector to choose on the web application for which period we want to see the graphs. After a lot of trying different things, we saw that it messed with other things and we didn't get it to properly work. So we decided to not include it and settled on this final result. Although we wanted to make it better, we still learned a lot from the process.
+
+## Addition of an interactive map in the web through Leaflet
+
+Leaflet is an open-source JavaScript library that has helped us implement an interactive map in our web application.
+However, we have had some problems with this library because of incompatibilities with the design. Sometimes the map
+appeared separated in tiles and covered the whole screen. This problem has been solved by slightly modifying the layout
+HTML. Another problem we have had and we have not been able to solve has been that layers appear unchecked by default
+when we refresh the page even if the layers are visible in the map. For the layers to correctly work, the user has to
+check and uncheck all the layers for them to work as expected. We have tried to search for a solution on the Internet
+but the 
+solutions suggested did not work. We think this problem is due to a bug from the Leaflet library.
 
 # For each of the services and resources used, explanation on how project benefits from them. Giving some alternatives to obtain similar results and briefly explaining why have been discarded.
 
@@ -354,14 +365,21 @@ The amount of time we have spent on every task has been more or less the one we 
 member and per week.
 
 
-| Team member | Task                                                           | Time invested |
-|-------------|----------------------------------------------------------------|---------------|
-| Michiel     | Creating a first Django application and connecting to postgres | 3 hours       |
-| Michiel     | Researching different chart options (pyplot, tableau, chartjs) | 2 hours       |
-| Michiel     | Implementing the first chart prototype with dummy data         | 4 hours       |
-| Michiel     | Making the graphs work in chartjs with the cleaned data        | 2 hours       |
-| Michiel     | Making the graphs interactive                                  | 4 hours       |
-| Guillem     | Researching different ways to add an interactive map           |               |
+| Team member | Task                                                                            | Time invested |
+|-------------|---------------------------------------------------------------------------------|---------------|
+| Michiel     | Creating a first Django application and connecting to postgres                  | 3 hours       |
+| Michiel     | Researching different chart options (pyplot, tableau, chartjs)                  | 2 hours       |
+| Michiel     | Implementing the first chart prototype with dummy data                          | 4 hours       |
+| Michiel     | Making the graphs work in chartjs with the cleaned data                         | 2 hours       |
+| Michiel     | Making the graphs interactive                                                   | 4 hours       |
+| Guillem     | Researching different ways to add an interactive map                            | 3 hours       |
+| Guillem     | Implementing a first working map                                                | 2 hours       |
+| Guillem     | Implement layers for the map                                                    | 3 hours       |
+| Guillem     | Adjusting the map to the layout                                                 | 2 hours       |
+| Guillem     | Creating scripts to load data to the DB and setting Django to retrieve the data | 3 hours       |
+
+
+
 
 
 One of the things we could have done to improve our plan is trying to parallelize the tasks and plan more than one cycle
