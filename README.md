@@ -381,6 +381,16 @@ member and per week.
 | Samar       | Collecting data                                                                 | 2 hours       |
 | Samar       | preprocessing the data and implementing some graphs                             | 4 hours       |
 | Samar       | Data prediction using machine learning                                          | 6 hours       |
+| Roman       | Designing figma wireframes                                                      | 5 hours       |
+| Roman       | Creating web pages layout                                                       | 6 hours       |
+| Roman       | Styling web pages                                                               | 4 hours       |
+| Martin      | Setting up AWS services                                                         | 3 hours       |
+| Martin      | Deploying vanilla python application                                            | 2 hours       |
+| Martin      | Deploying django application                                                    | 3 hours       |
+| Martin      | Integrating django application with Amazon RDS                                  | 2 hours       |
+| Martin      | Deploying django static content                                                 | 4 hours       |
+| Martin      | Populating RDS database                                                         | 1 hour        |
+
 
 
 
