@@ -372,6 +372,7 @@ member and per week.
 | Michiel     | Implementing the first chart prototype with dummy data                          | 4 hours       |
 | Michiel     | Making the graphs work in chartjs with the cleaned data                         | 2 hours       |
 | Michiel     | Making the graphs interactive                                                   | 4 hours       |
+| Michiel     | Machine learning predictions                                                    | 1 hour        |
 | Guillem     | Researching different ways to add an interactive map                            | 3 hours       |
 | Guillem     | Implementing a first working map                                                | 2 hours       |
 | Guillem     | Implement layers for the map                                                    | 3 hours       |
