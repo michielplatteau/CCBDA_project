@@ -378,7 +378,9 @@ member and per week.
 | Guillem     | Implement layers for the map                                                    | 3 hours       |
 | Guillem     | Adjusting the map to the layout                                                 | 2 hours       |
 | Guillem     | Creating scripts to load data to the DB and setting Django to retrieve the data | 3 hours       |
-
+| Samar       | Collecting data                                                                 | 2 hours       |
+| Samar       | preprocessing the data and implementing some graphs                             | 4 hours       |
+| Samar       | Data prediction using machine learning                                          | 6 hours       |
 
 
 
