@@ -26,8 +26,8 @@ with open('data/cleaned_data_events.csv', 'r') as file:
     insert_query = "INSERT INTO war_info_app_eventsmap2 (latitude, longitude, date, type, notes) \
     VALUES (%s, %s, %s, %s, %s)"
 
-    data_to_insert = [tuple(row) + ('note',) for row in csv_data]
-    print(data_to_insert[0])
+    data_to_insert = [tuple(row) for row in csv_data]
+    # print(data_to_insert[0])
     # Execute the INSERT query with multiple rows
     cursor.executemany(insert_query, data_to_insert)
 
