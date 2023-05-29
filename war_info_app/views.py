@@ -160,12 +160,14 @@ def index2(request):
 
 def index3(request):
     # EquipmentPrediction.objects.all().delete()
+    # Equipment.objects.all().delete()
+    # EventsMap2.objects.all().delete()
     # get all rows in table
     equipment = list(zip(*[[equip.date.strftime('%Y-%m-%d'), equip.aircraft, equip.helicopter, equip.tank, equip.drone] for equip in Equipment.objects.all().order_by('date')]))
     predictions = list(
         zip(*[[pred.date.strftime('%Y-%m-%d'), pred.aircraft] for pred in EquipmentPrediction.objects.all().order_by('date')]))
 
-    month_ago_date = datetime.now() - timedelta(days=30)
+    month_ago_date = datetime.now() - timedelta(days=35)
 
     # events of the last 30 days.
     events = list(zip(*[[event.date.strftime('%Y-%m-%d'), event.type, event.latitude, event.longitude, event.notes] for event in
